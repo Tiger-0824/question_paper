@@ -1,0 +1,1943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>DELHI SULTANATE — Chapter Revision Quiz</title>
+  
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* --------------------------------------------------
+       CSS VARIABLES & THEME
+    -------------------------------------------------- */
+    :root {
+      --bg-main: #090B12;
+      --burgundy-deep: #4A1725;
+      --royal-red: #8E2438;
+      --antique-gold: #D4A84F;
+      --bright-gold: #F5D27A;
+      --dark-brown: #241810;
+      --ai-blue: #4DA3FF;
+      --text-light: #F7F3EA;
+      --text-muted: #BDB39F;
+      --success: #2EC4B6;
+      --danger: #E63946;
+      --surface-card: rgba(22, 16, 22, 0.88);
+      --surface-border: rgba(212, 168, 79, 0.32);
+      --font-royal: 'Cinzel', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-light);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+      padding: 16px;
+    }
+
+    /* Ambient Architectural Background */
+    .bg-ornament {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(142, 36, 56, 0.28), transparent 50%),
+        radial-gradient(circle at 80% 90%, rgba(77, 163, 255, 0.12), transparent 45%),
+        radial-gradient(circle at 20% 85%, rgba(74, 23, 37, 0.35), transparent 50%);
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 0;
+      background-image: 
+        radial-gradient(var(--antique-gold) 1px, transparent 1px),
+        linear-gradient(to right, rgba(212, 168, 79, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(212, 168, 79, 0.1) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    /* Main Container */
+    #app {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 680px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Card Panels */
+    .sultan-card {
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: 18px;
+      padding: 28px 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(245, 210, 122, 0.15);
+      backdrop-filter: blur(14px);
+      position: relative;
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+
+    .sultan-card::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 15%;
+      right: 15%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--bright-gold), transparent);
+    }
+
+    /* AI Orb Avatar */
+    .ai-orb-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px auto;
+      position: relative;
+      width: 76px;
+      height: 76px;
+    }
+
+    .ai-orb {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fff, var(--ai-blue) 40%, var(--royal-red) 90%);
+      box-shadow: 0 0 25px rgba(77, 163, 255, 0.65), 0 0 45px rgba(212, 168, 79, 0.3);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: orbFloat 3.5s ease-in-out infinite;
+    }
+
+    .ai-orb-ring {
+      position: absolute;
+      inset: -8px;
+      border: 1.5px dashed var(--antique-gold);
+      border-radius: 50%;
+      animation: ringRotate 12s linear infinite;
+      opacity: 0.6;
+    }
+
+    .ai-orb.correct {
+      background: radial-gradient(circle at 35% 35%, #fff, var(--success) 45%, #054a44 95%);
+      box-shadow: 0 0 35px rgba(46, 196, 182, 0.85);
+    }
+
+    .ai-orb.wrong {
+      background: radial-gradient(circle at 35% 35%, #fff, var(--danger) 45%, #4a0d13 95%);
+      box-shadow: 0 0 35px rgba(230, 57, 70, 0.85);
+      animation: orbShake 0.4s ease-in-out;
+    }
+
+    /* Headings & Texts */
+    .badge-tag {
+      font-family: var(--font-royal);
+      color: var(--bright-gold);
+      font-size: 11px;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .badge-tag::before, .badge-tag::after {
+      content: "✦";
+      font-size: 9px;
+      color: var(--antique-gold);
+      opacity: 0.7;
+    }
+
+    h1.title-main {
+      font-family: var(--font-royal);
+      font-size: 32px;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: 1.5px;
+      background: linear-gradient(180deg, #FFFFFF 15%, var(--bright-gold) 65%, var(--antique-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+    }
+
+    .subtitle-main {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14.5px;
+      margin-bottom: 20px;
+    }
+
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--antique-gold);
+      margin: 18px 0;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .gold-divider::before, .gold-divider::after {
+      content: "";
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, var(--antique-gold), transparent);
+    }
+
+    /* Buttons */
+    .btn-sultan {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 52px;
+      padding: 14px 24px;
+      background: linear-gradient(135deg, var(--royal-red), var(--burgundy-deep));
+      color: #FFF;
+      border: 1px solid var(--bright-gold);
+      border-radius: 12px;
+      font-family: var(--font-royal);
+      font-size: 14.5px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(74, 23, 37, 0.5);
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      margin-top: 14px;
+    }
+
+    .btn-sultan:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(212, 168, 79, 0.35);
+      background: linear-gradient(135deg, #a72c43, #5c1c2e);
+    }
+
+    .btn-sultan:active {
+      transform: translateY(0);
+    }
+
+    .btn-sultan.secondary {
+      background: rgba(36, 24, 16, 0.7);
+      border: 1px solid rgba(212, 168, 79, 0.4);
+      color: var(--bright-gold);
+    }
+
+    .btn-sultan:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Inputs */
+    .input-sultan {
+      width: 100%;
+      background: rgba(9, 11, 18, 0.7);
+      border: 1.5px solid rgba(212, 168, 79, 0.4);
+      border-radius: 12px;
+      color: #FFF;
+      font-family: var(--font-body);
+      font-size: 16px;
+      padding: 14px 18px;
+      outline: none;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .input-sultan:focus {
+      border-color: var(--bright-gold);
+      box-shadow: 0 0 16px rgba(245, 210, 122, 0.25);
+    }
+
+    /* Instructions Box */
+    .instruction-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      max-height: 290px;
+      overflow-y: auto;
+      padding-right: 6px;
+      margin: 16px 0;
+    }
+
+    .instruction-grid::-webkit-scrollbar {
+      width: 4px;
+    }
+    .instruction-grid::-webkit-scrollbar-thumb {
+      background: var(--antique-gold);
+      border-radius: 4px;
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 12px;
+      background: rgba(36, 24, 16, 0.4);
+      border: 1px solid rgba(212, 168, 79, 0.15);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: #E2DBD0;
+    }
+
+    .rule-num {
+      font-family: var(--font-royal);
+      color: var(--bright-gold);
+      font-weight: 700;
+      min-width: 24px;
+    }
+
+    /* Top Quiz Status Bar */
+    .quiz-status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(212, 168, 79, 0.2);
+    }
+
+    .student-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-royal);
+      font-size: 13px;
+      color: var(--bright-gold);
+    }
+
+    .student-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ai-blue);
+      box-shadow: 0 0 8px var(--ai-blue);
+    }
+
+    .stats-pill {
+      font-family: var(--font-royal);
+      font-size: 13px;
+      color: var(--text-light);
+      background: rgba(74, 23, 37, 0.45);
+      border: 1px solid rgba(212, 168, 79, 0.3);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* Timer Widget */
+    .timer-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .timer-svg {
+      position: relative;
+      width: 54px;
+      height: 54px;
+      flex-shrink: 0;
+    }
+
+    .timer-svg svg {
+      width: 54px;
+      height: 54px;
+      transform: rotate(-90deg);
+    }
+
+    .timer-svg circle {
+      fill: none;
+      stroke-width: 4.5;
+    }
+
+    .timer-bg {
+      stroke: rgba(255, 255, 255, 0.08);
+    }
+
+    .timer-bar {
+      stroke: var(--antique-gold);
+      stroke-dasharray: 157;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.9s linear, stroke 0.3s;
+    }
+
+    .timer-val {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-royal);
+      font-size: 17px;
+      font-weight: 700;
+      color: #FFF;
+    }
+
+    .timer-bar.danger {
+      stroke: var(--danger);
+      animation: timerPulse 0.6s infinite alternate;
+    }
+
+    .progress-bar-rail {
+      flex: 1;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--royal-red), var(--bright-gold));
+      width: 2%;
+      transition: width 0.3s ease;
+    }
+
+    /* Question Box */
+    .question-category {
+      font-family: var(--font-royal);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: var(--ai-blue);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .question-text {
+      font-size: 17px;
+      line-height: 1.55;
+      font-weight: 600;
+      color: #FFF;
+      margin-bottom: 18px;
+    }
+
+    /* Options System */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-bottom: 16px;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      min-height: 48px;
+      padding: 10px 14px;
+      background: rgba(26, 16, 22, 0.6);
+      border: 1px solid rgba(212, 168, 79, 0.22);
+      border-radius: 10px;
+      color: var(--text-light);
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.4;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--bright-gold);
+      background: rgba(74, 23, 37, 0.35);
+      transform: translateX(4px);
+    }
+
+    .opt-key {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: rgba(212, 168, 79, 0.15);
+      border: 1px solid var(--antique-gold);
+      color: var(--bright-gold);
+      font-family: var(--font-royal);
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .option-btn.selected-correct {
+      background: rgba(46, 196, 182, 0.18) !important;
+      border-color: var(--success) !important;
+      color: #E6FFF9 !important;
+    }
+    .option-btn.selected-correct .opt-key {
+      background: var(--success);
+      color: #090B12;
+      border-color: var(--success);
+    }
+
+    .option-btn.selected-wrong {
+      background: rgba(230, 57, 70, 0.18) !important;
+      border-color: var(--danger) !important;
+      color: #FFE6E6 !important;
+    }
+    .option-btn.selected-wrong .opt-key {
+      background: var(--danger);
+      color: #FFF;
+      border-color: var(--danger);
+    }
+
+    .option-btn.correct-reveal {
+      border-color: var(--success) !important;
+      background: rgba(46, 196, 182, 0.1) !important;
+    }
+
+    /* AI Feedback Speech Bubble */
+    .ai-speech-bubble {
+      background: rgba(14, 24, 40, 0.7);
+      border: 1px solid rgba(77, 163, 255, 0.35);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 10px;
+      animation: fadeIn 0.3s ease;
+      display: none;
+    }
+
+    .ai-speech-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-royal);
+      font-size: 11px;
+      color: var(--ai-blue);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .ai-speech-msg {
+      font-size: 13.5px;
+      color: #F1F4FA;
+      line-height: 1.45;
+    }
+
+    /* Final Result Components */
+    .score-circle-wrap {
+      width: 130px;
+      height: 130px;
+      margin: 12px auto 16px auto;
+      position: relative;
+    }
+
+    .score-circle-svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .score-circle-svg circle {
+      fill: none;
+      stroke-width: 8;
+    }
+
+    .score-text-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .score-text-inner .big-num {
+      font-family: var(--font-royal);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--bright-gold);
+    }
+
+    .score-text-inner .sub-num {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .stat-badge-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .stat-badge {
+      background: rgba(36, 24, 16, 0.5);
+      border: 1px solid rgba(212, 168, 79, 0.2);
+      border-radius: 10px;
+      padding: 10px 8px;
+      text-align: center;
+    }
+
+    .stat-badge .val {
+      font-family: var(--font-royal);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .stat-badge .lbl {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* Category Mastery Bars */
+    .category-breakdown {
+      margin: 20px 0;
+      text-align: left;
+    }
+
+    .cat-bar-item {
+      margin-bottom: 11px;
+    }
+
+    .cat-bar-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 4px;
+      color: #DDD6CA;
+    }
+
+    .cat-bar-rail {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .cat-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--burgundy-deep), var(--bright-gold));
+      width: 0%;
+      border-radius: 8px;
+      transition: width 0.8s cubic-bezier(0.1, 0.8, 0.2, 1);
+    }
+
+    /* Footer Branding */
+    .master-footer {
+      text-align: center;
+      margin-top: 14px;
+      padding: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(212, 168, 79, 0.15);
+    }
+
+    .master-footer strong {
+      font-family: var(--font-royal);
+      color: var(--bright-gold);
+      letter-spacing: 1.2px;
+      font-size: 13px;
+      display: block;
+      margin-top: 3px;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @keyframes ringRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes orbShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
+    @keyframes timerPulse {
+      from { opacity: 1; }
+      to { opacity: 0.4; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-ornament"></div>
+  <div class="bg-grid"></div>
+
+  <div id="app">
+
+    <!-- SCREEN 1: WELCOME SCREEN -->
+    <div id="screenWelcome" class="sultan-card">
+      <div class="badge-tag">History Revision Assistant</div>
+      <h1 class="title-main">DELHI SULTANATE</h1>
+      <p class="subtitle-main">Chapter Revision • 50 Questions</p>
+
+      <div class="ai-orb-wrap">
+        <div class="ai-orb" id="welcomeOrb">
+          <div class="ai-orb-ring"></div>
+        </div>
+      </div>
+
+      <div class="gold-divider">✦</div>
+
+      <p style="text-align:center; font-size:14px; color:var(--text-muted); line-height:1.6; margin-bottom:12px;">
+        A comprehensive, guided chapter test structured according to ICSE Class IX specifications.
+      </p>
+
+      <button class="btn-sultan" onclick="goToScreen('screenName')">
+        BEGIN REVISION <span>→</span>
+      </button>
+
+      <div class="master-footer">
+        HISTORICAL AI REVISION SYSTEM
+        <strong>MADE BY ABHISEK SIR</strong>
+      </div>
+    </div>
+
+    <!-- SCREEN 2: NAME COLLECTION -->
+    <div id="screenName" class="sultan-card" style="display:none;">
+      <div class="badge-tag">Student Verification</div>
+      <h1 class="title-main" style="font-size:24px;">BEFORE WE BEGIN...</h1>
+      <p class="subtitle-main">What should I call you during this revision session?</p>
+
+      <div style="margin: 22px 0;">
+        <input 
+          type="text" 
+          id="studentNameInput" 
+          class="input-sultan" 
+          placeholder="Enter your name here..." 
+          maxlength="24"
+          autocomplete="off"
+        />
+      </div>
+
+      <button class="btn-sultan" onclick="handleNameSubmit()">
+        CONTINUE <span>→</span>
+      </button>
+
+      <div class="master-footer">
+        <strong>MADE BY ABHISEK SIR</strong>
+      </div>
+    </div>
+
+    <!-- SCREEN 3: AI ASSISTANT INTRO -->
+    <div id="screenIntro" class="sultan-card" style="display:none;">
+      <div class="ai-orb-wrap">
+        <div class="ai-orb">
+          <div class="ai-orb-ring"></div>
+        </div>
+      </div>
+
+      <div class="badge-tag">AI Revision Assistant</div>
+      <h1 class="title-main" id="dynamicGreeting" style="font-size:26px;">Hello, Scholar!</h1>
+      
+      <div style="background:rgba(36,24,16,0.5); border:1px solid rgba(212,168,79,0.25); border-radius:12px; padding:18px; margin:16px 0; text-align:center; min-height:85px;">
+        <p id="typewriterText" style="font-size:14.5px; line-height:1.6; color:#EFE7D8;"></p>
+      </div>
+
+      <button class="btn-sultan" id="introNextBtn" style="display:none;" onclick="goToScreen('screenInstructions')">
+        LET'S BEGIN <span>→</span>
+      </button>
+
+      <div class="master-footer">
+        <strong>MADE BY ABHISEK SIR</strong>
+      </div>
+    </div>
+
+    <!-- SCREEN 4: INSTRUCTIONS -->
+    <div id="screenInstructions" class="sultan-card" style="display:none;">
+      <div class="badge-tag">Examination Protocol</div>
+      <h1 class="title-main" style="font-size:24px;">REVISION RULES</h1>
+      
+      <div class="instruction-grid">
+        <div class="rule-item"><span class="rule-num">01.</span><div><strong>50 Questions:</strong> Covers all major sections of the Delhi Sultanate chapter.</div></div>
+        <div class="rule-item"><span class="rule-num">02.</span><div><strong>5 Options:</strong> Every question features five choices (A, B, C, D, and E).</div></div>
+        <div class="rule-item"><span class="rule-num">03.</span><div><strong>One Mark:</strong> Each correct response awards exactly 1 mark.</div></div>
+        <div class="rule-item"><span class="rule-num">04.</span><div><strong>50 Max Marks:</strong> Highest possible aggregate revision score is 50.</div></div>
+        <div class="rule-item"><span class="rule-num">05.</span><div><strong>20 Seconds:</strong> Individual countdown of 20 seconds allotted per question.</div></div>
+        <div class="rule-item"><span class="rule-num">06.</span><div><strong>Automatic Lock:</strong> Timeout records the item as unanswered and reveals the key.</div></div>
+        <div class="rule-item"><span class="rule-num">07.</span><div><strong>No Negative Marks:</strong> No penalty points are deducted for wrong answers.</div></div>
+        <div class="rule-item"><span class="rule-num">08.</span><div><strong>Answer Lock:</strong> Once an option is tapped, your selection is committed.</div></div>
+        <div class="rule-item"><span class="rule-num">09.</span><div><strong>AI Guidance:</strong> Instant historical explanation follows every submission.</div></div>
+        <div class="rule-item"><span class="rule-num">10.</span><div><strong>Diagnostic Snapshot:</strong> A full category-wise mastery breakdown appears at the end.</div></div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:10px; margin: 12px 0; font-size:13px; color:var(--antique-gold);">
+        <input type="checkbox" id="rulesCheckbox" onchange="toggleRuleStartBtn()" style="accent-color:var(--bright-gold); width:16px; height:16px; cursor:pointer;" />
+        <label for="rulesCheckbox" style="cursor:pointer;">I have carefully read and understood the instructions.</label>
+      </div>
+
+      <button class="btn-sultan" id="startRevBtn" disabled onclick="goToScreen('screenChapterCard')">
+        START REVISION <span id="dynStartName"></span> <span>→</span>
+      </button>
+
+      <div class="master-footer">
+        <strong>MADE BY ABHISEK SIR</strong>
+      </div>
+    </div>
+
+    <!-- SCREEN 5: CHAPTER CARD -->
+    <div id="screenChapterCard" class="sultan-card" style="display:none; text-align:center;">
+      <div class="badge-tag">Historical Timeline</div>
+      <div style="border: 1px solid var(--antique-gold); padding:24px 16px; border-radius:14px; background:radial-gradient(circle, rgba(142,36,56,0.35) 0%, rgba(9,11,18,0.85) 100%);">
+        <h2 style="font-family:var(--font-royal); font-size:16px; letter-spacing:3px; color:var(--text-muted); margin-bottom:8px;">CHAPTER REVISION</h2>
+        <h1 style="font-family:var(--font-royal); font-size:32px; font-weight:900; color:var(--bright-gold); margin-bottom:10px;">DELHI SULTANATE</h1>
+        <div style="font-family:var(--font-royal); font-size:18px; color:#FFF; letter-spacing:2px;">
+          1206 <span style="color:var(--antique-gold);">───────────</span> 1526
+        </div>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:20px 0;">
+        <span class="stats-pill">Slave Dynasty</span>
+        <span class="stats-pill">Khilji Dynasty</span>
+        <span class="stats-pill">Tughlaq Dynasty</span>
+        <span class="stats-pill">Sayyid Dynasty</span>
+        <span class="stats-pill">Lodhi Dynasty</span>
+      </div>
+
+      <button class="btn-sultan" onclick="startQuizSession()">
+        ENTER QUESTIONNAIRE <span>→</span>
+      </button>
+
+      <div class="master-footer">
+        <strong>MADE BY ABHISEK SIR</strong>
+      </div>
+    </div>
+
+    <!-- SCREEN 6: QUIZ ENGINE -->
+    <div id="screenQuiz" class="sultan-card" style="display:none;">
+      <!-- Status Bar -->
+      <div class="quiz-status-bar">
+        <div class="student-badge">
+          <span class="dot"></span>
+          <span id="quizBarStudentName">STUDENT</span>
+        </div>
+        <div class="stats-pill" id="scorePill">SCORE: 00</div>
+      </div>
+
+      <!-- Timer & Progress -->
+      <div class="timer-wrap">
+        <div class="timer-svg">
+          <svg viewBox="0 0 64 64">
+            <circle class="timer-bg" cx="32" cy="32" r="25" />
+            <circle class="timer-bar" id="timerCircle" cx="32" cy="32" r="25" />
+          </svg>
+          <div class="timer-val" id="timerLabel">20</div>
+        </div>
+        <div style="flex:1;">
+          <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px; font-family:var(--font-royal); color:var(--antique-gold);">
+            <span id="questionNumLabel">QUESTION 01 / 50</span>
+            <span id="pctProgressLabel">2%</span>
+          </div>
+          <div class="progress-bar-rail">
+            <div class="progress-bar-fill" id="progressFill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question Content -->
+      <div class="question-category" id="qCategory">CATEGORY</div>
+      <div class="question-text" id="qText">Question text will appear here...</div>
+
+      <!-- Options List -->
+      <div class="options-grid" id="optionsContainer"></div>
+
+      <!-- AI Live Feedback Bubble -->
+      <div class="ai-speech-bubble" id="aiSpeechBox">
+        <div class="ai-speech-header">
+          <span>✦ AI REVISION ASSISTANT</span>
+        </div>
+        <div class="ai-speech-msg" id="aiSpeechText"></div>
+      </div>
+
+      <button class="btn-sultan" id="nextQuestionBtn" style="display:none;" onclick="handleNextQuestion()">
+        NEXT QUESTION <span>→</span>
+      </button>
+
+      <div class="master-footer">
+        <strong>MADE BY ABHISEK SIR</strong>
+      </div>
+    </div>
+
+    <!-- SCREEN 7: ANALYZING LOADER -->
+    <div id="screenAnalyzing" class="sultan-card" style="display:none; text-align:center; padding:48px 24px;">
+      <div class="ai-orb-wrap" style="width:90px; height:90px;">
+        <div class="ai-orb" style="width:64px; height:64px; background:radial-gradient(circle, #fff, var(--bright-gold) 40%, var(--royal-red) 90%);">
+          <div class="ai-orb-ring" style="inset:-12px; border-color:var(--ai-blue);"></div>
+        </div>
+      </div>
+      <h2 style="font-family:var(--font-royal); color:var(--bright-gold); margin:18px 0 6px 0; font-size:20px;">
+        ANALYSING YOUR REVISION...
+      </h2>
+      <p style="font-size:13.5px; color:var(--text-muted);">
+        Evaluating accuracy, response pacing, and chapter syllabus breakdown...
+      </p>
+      <div class="master-footer" style="margin-top:28px;">
+        <strong>MADE BY ABHISEK SIR</strong>
+      </div>
+    </div>
+
+    <!-- SCREEN 8: FINAL RESULTS & DIAGNOSTICS -->
+    <div id="screenResult" class="sultan-card" style="display:none; text-align:center;">
+      <div class="badge-tag">Assessment Finalized</div>
+      <h1 class="title-main" style="font-size:26px;">REVISION COMPLETE</h1>
+      <p class="subtitle-main" id="resultGreeting">Well done, Student!</p>
+
+      <!-- Circular Score Chart -->
+      <div class="score-circle-wrap">
+        <svg class="score-circle-svg" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" stroke="rgba(255,255,255,0.08)"></circle>
+          <circle id="finalScoreCircle" cx="50" cy="50" r="40" stroke="var(--bright-gold)" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="251.2" style="transition: stroke-dashoffset 1.4s ease-out;"></circle>
+        </svg>
+        <div class="score-text-inner">
+          <span class="big-num" id="finalScoreNum">00</span>
+          <span class="sub-num" id="finalPctNum">0% SCORE</span>
+        </div>
+      </div>
+
+      <!-- Stat Badges -->
+      <div class="stat-badge-row">
+        <div class="stat-badge" style="border-color: rgba(46,196,182,0.4);">
+          <div class="val" style="color:var(--success);" id="statCorrect">0</div>
+          <div class="lbl">CORRECT</div>
+        </div>
+        <div class="stat-badge" style="border-color: rgba(230,57,70,0.4);">
+          <div class="val" style="color:var(--danger);" id="statWrong">0</div>
+          <div class="lbl">INCORRECT</div>
+        </div>
+        <div class="stat-badge" style="border-color: rgba(212,168,79,0.4);">
+          <div class="val" style="color:var(--bright-gold);" id="statUnanswered">0</div>
+          <div class="lbl">TIMEOUTS</div>
+        </div>
+      </div>
+
+      <!-- AI Evaluation Feedback -->
+      <div style="background:rgba(36,24,16,0.6); border:1px solid rgba(212,168,79,0.3); border-radius:12px; padding:16px; margin:16px 0; text-align:left;">
+        <div style="font-family:var(--font-royal); font-size:11.5px; color:var(--bright-gold); letter-spacing:1px; margin-bottom:6px;">
+          ✦ AI DIAGNOSTIC REPORT
+        </div>
+        <div id="aiSummaryEvaluation" style="font-size:13.5px; color:#ECE5DA; line-height:1.55;"></div>
+      </div>
+
+      <!-- Topic Performance Breakdown -->
+      <div class="category-breakdown">
+        <div style="font-family:var(--font-royal); font-size:12px; color:var(--antique-gold); letter-spacing:1px; margin-bottom:12px;">
+          YOUR REVISION SNAPSHOT
+        </div>
+        <div id="categoryBarsContainer"></div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <button class="btn-sultan" onclick="restartEntireQuiz()">
+          RETRY FULL QUIZ <span>↺</span>
+        </button>
+        <button class="btn-sultan secondary" id="reviseMistakesBtn" onclick="startMistakesRevision()">
+          REVISE MISTAKES ONLY <span>✦</span>
+        </button>
+      </div>
+
+      <div class="master-footer">
+        HISTORICAL AI REVISION SYSTEM
+        <strong>MADE BY ABHISEK SIR</strong>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Audio Synthesis & Core Engine Script -->
+  <script>
+    /* ==============================================================
+       1. SYNTHESIZED WEB AUDIO ENGINE (ZERO EXTERNAL AUDIO FILES)
+    ============================================================== */
+    const AudioEngine = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) this.ctx = new AudioContext();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      },
+      playTick() {
+        if (!this.ctx) return;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, this.ctx.currentTime);
+        gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.04);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.05);
+      },
+      playSuccess() {
+        if (!this.ctx) return;
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(523.25, now); // C5
+        osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+        osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.36);
+      },
+      playWrong() {
+        if (!this.ctx) return;
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.setValueAtTime(164.81, now + 0.1);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.32);
+      }
+    };
+
+    /* ==============================================================
+       2. COMPLETE 50-QUESTION DATABASE WITH 5 OPTIONS EACH
+    ============================================================== */
+    const QUESTION_BANK = [
+      {
+        q: "Why were Turkish conquests in the 10th and 11th centuries relatively swift in North India?",
+        opts: [
+          "North India lacked any regional armies",
+          "The kingdoms were constantly at conflict and lacked political unity",
+          "A powerful central government surrendered without resistance",
+          "The Rajputs lacked fortified strongholds",
+          "None of the above"
+        ],
+        ans: 1,
+        cat: "Sources & Dynasties",
+        exp: "Lack of a central government and constant internal conflicts among small kingdoms caused quick Turkish victories."
+      },
+      {
+        q: "In which century was the Turkish Empire firmly established in India?",
+        opts: ["10th century", "11th century", "12th century", "13th century", "None of the above"],
+        ans: 3,
+        cat: "Chronology",
+        exp: "Although conquests began earlier, their empire in India was established in the 13th century."
+      },
+      {
+        q: "What is the historical time span defined as the period of the Delhi Sultanate?",
+        opts: ["1192 to 1526", "1206 to 1526", "1206 to 1320", "1290 to 1526", "None of the above"],
+        ans: 1,
+        cat: "Chronology",
+        exp: "The period between 1206 and 1526 is termed the Delhi Sultanate, where five dynasties successively ruled."
+      },
+      {
+        q: "How many successive ruling dynasties governed during the Delhi Sultanate period?",
+        opts: ["Three", "Four", "Five", "Six", "None of the above"],
+        ans: 2,
+        cat: "Dynasties",
+        exp: "Five dynasties ruled: Slave, Khilji, Tughlaq, Sayyid, and Lodhi dynasties."
+      },
+      {
+        q: "Why was the state called the 'Delhi Sultanate'?",
+        opts: [
+          "Rulers governed from their capital at Delhi",
+          "The rulers of various dynasties were called Sultans",
+          "It was established by the Caliph of Baghdad",
+          "Both A and B",
+          "None of the above"
+        ],
+        ans: 3,
+        cat: "Dynasties",
+        exp: "The rulers were titled Sultans and governed their realms from their central capital at Delhi."
+      },
+      {
+        q: "Which of the following forms an important category of primary written sources for the Delhi Sultanate?",
+        opts: [
+          "Official records and administrative manuals",
+          "Biographies and autobiographies",
+          "Court histories and chronicles",
+          "Foreign travellers' accounts and private correspondence",
+          "All of the above"
+        ],
+        ans: 4,
+        cat: "Sources",
+        exp: "Official records, autobiographies, chronicles, and travellers' accounts all reconstruct this period."
+      },
+      {
+        q: "In which language were the court histories (tawarikh) of the Delhi Sultanate written?",
+        opts: ["Arabic", "Persian", "Turkish", "Urdu", "None of the above"],
+        ans: 1,
+        cat: "Sources",
+        exp: "The court histories (tawarikh) of the Delhi Sultanate were written in Persian."
+      },
+      {
+        q: "Which of the following is one of the four stages in making an illuminated manuscript?",
+        opts: [
+          "Preparing the paper",
+          "Writing the text",
+          "Melting gold to highlight important words and passages",
+          "Preparing the binding",
+          "All of the above"
+        ],
+        ans: 4,
+        cat: "Sources",
+        exp: "All four steps constitute the stages of creating an illuminated manuscript."
+      },
+      {
+        q: "Who among the following learned men authored the tawarikh (histories) during the Sultanate?",
+        opts: ["Secretaries", "Administrators", "Poets", "Courtiers", "All of the above"],
+        ans: 4,
+        cat: "Sources",
+        exp: "The histories were written by learned secretaries, administrators, poets, and courtiers."
+      },
+      {
+        q: "Why did authors of the tawarikh frequently write their historical texts for the Sultans?",
+        opts: [
+          "Under strict judicial duress",
+          "In the hope of getting rich awards",
+          "To spread democratic ideas",
+          "To instruct common peasants",
+          "None of the above"
+        ],
+        ans: 1,
+        cat: "Sources",
+        exp: "Authors often composed these historical works in anticipation and hope of receiving rich awards."
+      },
+      {
+        q: "What made a handwritten manuscript an 'illuminated manuscript'?",
+        opts: [
+          "Burning lamps next to it during court readings",
+          "Decorating it with gold or silver to highlight important words and passages",
+          "Stamping it with the official seal of the Sultan",
+          "Using brightly dyed red ink made of saffron",
+          "None of the above"
+        ],
+        ans: 1,
+        cat: "Sources",
+        exp: "Illuminated manuscripts were decorated with gold or silver to highlight key words and passages."
+      },
+      {
+        q: "Where are Delhi Sultanate inscriptions typically found?",
+        opts: ["On coins", "On monuments", "On milestones", "On tombstones", "All of the above"],
+        ans: 4,
+        cat: "Sources",
+        exp: "Inscriptions from this era are found on coins, monuments, milestones, and tombstones."
+      },
+      {
+        q: "Which of the following was recorded through inscriptions during the Delhi Sultanate?",
+        opts: [
+          "Land-grants made by rulers and chiefs",
+          "Descriptions of battles",
+          "Eulogies dedicated to rulers",
+          "Military achievements and lineage records",
+          "All of the above"
+        ],
+        ans: 4,
+        cat: "Sources",
+        exp: "Inscriptions recorded royal land-grants, descriptions of military battles, and eulogies."
+      },
+      {
+        q: "In which languages were the inscriptions of the Delhi Sultanate composed?",
+        opts: [
+          "Sanskrit only",
+          "Arabic only",
+          "Greek and Persian",
+          "Sanskrit, Arabic, or bilingual combinations of both",
+          "None of the above"
+        ],
+        ans: 3,
+        cat: "Sources",
+        exp: "Inscriptions are found in Sanskrit, in Arabic, and sometimes in bilingual versions of both."
+      },
+      {
+        q: "The first coin bearing inscriptions in both Arabic and Sanskrit was issued by:",
+        opts: [
+          "Qutbuddin Aibak",
+          "Muhammad Bakhtiyar Khilji",
+          "Shamsuddin Iltutmish",
+          "Alauddin Khilji",
+          "None of the above"
+        ],
+        ans: 1,
+        cat: "Sources",
+        exp: "The first coin issued by Muhammad Bakhtiyar Khilji bore both Arabic and Sanskrit inscriptions."
+      },
+      {
+        q: "What insights do the monuments of the Delhi Sultanate provide about that era?",
+        opts: [
+          "Cultural trends of the period",
+          "Living conditions of the time",
+          "Faiths and religious beliefs",
+          "Socio-cultural outlook of the rulers",
+          "All of the above"
+        ],
+        ans: 4,
+        cat: "Architecture",
+        exp: "Monuments reveal cultural trends, living conditions, religious beliefs, and socio-cultural values."
+      },
+      {
+        q: "In honour of which venerated Sufi saint was the Qutab Minar dedicated?",
+        opts: [
+          "Khwaja Moinuddin Chishti",
+          "Hazrat Nizamuddin Auliya",
+          "Qutbuddin Bakhtiyar Kaki",
+          "Sheikh Salim Chishti",
+          "None of the above"
+        ],
+        ans: 2,
+        cat: "Architecture",
+        exp: "The Qutab Minar was dedicated to the revered Sufi saint Qutbuddin Bakhtiyar Kaki."
+      },
+      {
+        q: "Who started the construction of the Qutab Minar?",
+        opts: ["Shamsuddin Iltutmish", "Qutbuddin Aibak", "Muhammad Ghori", "Feroz Shah Tughlaq", "None of the above"],
+        ans: 1,
+        cat: "Architecture",
+        exp: "Construction of the Qutab Minar was begun by Qutbuddin Aibak."
+      },
+      {
+        q: "The construction of the Qutab Minar was originally completed by:",
+        opts: ["Qutbuddin Aibak", "Iltutmish", "Balban", "Jalaluddin Khilji", "None of the above"],
+        ans: 1,
+        cat: "Architecture",
+        exp: "The multi-storeyed tower was brought to completion by Shamsuddin Iltutmish."
+      },
+      {
+        q: "What was the original height and number of storeys of the Qutab Minar upon completion?",
+        opts: [
+          "65.2 m with 3 storeys",
+          "71.4 m with 4 storeys",
+          "75.0 m with 5 storeys",
+          "80.4 m with 4 storeys",
+          "None of the above"
+        ],
+        ans: 1,
+        cat: "Architecture",
+        exp: "When originally completed, it stood 71.4 metres high and consisted of four storeys."
+      },
+      {
+        q: "Which Sultan repaired and further raised the height of the Qutab Minar after lightning damage in 1369?",
+        opts: [
+          "Alauddin Khilji",
+          "Muhammad Bin Tughlaq",
+          "Feroz Shah Tughlaq",
+          "Ghiyas-ud-din Tughlaq",
+          "None of the above"
+        ],
+        ans: 2,
+        cat: "Architecture",
+        exp: "Damaged by lightning in 1369, Feroz Shah Tughlaq repaired and further raised its height."
+      },
+      {
+        q: "How many storeys does the Qutab Minar have today?",
+        opts: ["Three storeys", "Four storeys", "Five storeys", "Six storeys", "None of the above"],
+        ans: 2,
+        cat: "Architecture",
+        exp: "Today the Qutab Minar features five distinct storeys that taper as they ascend."
+      },
+      {
+        q: "On which side is the entrance doorway of the Qutab Minar located?",
+        opts: ["Southern side", "Northern side", "Eastern side", "Western side", "None of the above"],
+        ans: 1,
+        cat: "Architecture",
+        exp: "The entrance doorway to the Qutab Minar is positioned on the northern side."
+      },
+      {
+        q: "What are the base diameter and summit width of the Qutab Minar?",
+        opts: [
+          "Base diameter 15 m; summit width 4 m",
+          "Base diameter 13.8 m; summit width around 3 m",
+          "Base diameter 12.5 m; summit width 2.5 m",
+          "Base diameter 11 m; summit width 1.8 m",
+          "None of the above"
+        ],
+        ans: 1,
+        cat: "Architecture",
+        exp: "It measures approximately 13.8 m in diameter at the base, tapering to around 3 m at the summit."
+      },
+      {
+        q: "How many steps are there in the circular stairway leading to the top of the Qutab Minar?",
+        opts: ["280 steps", "345 steps", "379 steps", "402 steps", "None of the above"],
+        ans: 2,
+        cat: "Architecture",
+        exp: "A spiral staircase consisting of 379 steps leads to the top."
+      },
+      {
+        q: "Which combination of stones was used to construct the Qutab Minar?",
+        opts: [
+          "Red sandstone, granite, and slate",
+          "Red sandstone, marble, and grey quartzite",
+          "Limestone, basalt, and marble",
+          "White marble, pumice, and sandstone",
+          "None of the above"
+        ],
+        ans: 1,
+        cat: "Architecture",
+        exp: "The tower was erected utilizing red sandstone, marble, and grey quartzite."
+      },
+      {
+        q: "What architectural feature supports the balconies of the Qutab Minar to carry the load?",
+        opts: [
+          "Iron pillars beneath each balcony",
+          "Projecting balconies designed to distribute and take the load of weight",
+          "Flying buttresses anchored to the ground",
+          "Wooden beams embedded in the walls",
+          "None of the above"
+        ],
+        ans: 1,
+        cat: "Architecture",
+        exp: "Projecting balconies are engineered to distribute the structure's weight, keeping it intact for centuries."
+      },
+      {
+        q: "What inscriptions and motifs are carved onto the surface of the Qutab Minar?",
+        opts: [
+          "Verses from the Holy Quran",
+          "Intricate carvings with floral motifs",
+          "Scenes of royal coronations",
+          "Both A and B",
+          "None of the above"
+        ],
+        ans: 3,
+        cat: "Architecture",
+        exp: "Verses from the Quran and elaborate floral motifs decorate the surface of the minaret."
+      },
+      {
+        q: "Muhammad Ghori defeated Prithviraj Chauhan at which historic encounter?",
+        opts: [
+          "First Battle of Tarain (1191)",
+          "Second Battle of Tarain in 1192",
+          "Battle of Panipat (1526)",
+          "Battle of Chandawar (1194)",
+          "None of the above"
+        ],
+        ans: 1,
+        cat: "Dynasties & Rulers",
+        exp: "Muhammad Ghori decisively defeated Prithviraj Chauhan at the Second Battle of Tarain in 1192."
+      },
+      {
+        q: "Whom did Muhammad Ghori leave behind as viceroy of his conquered Indian territories before returning to Afghanistan?",
+        opts: ["Shamsuddin Iltutmish", "Qutbuddin Aibak", "Bakhtiyar Khilji", "Nasiruddin Qabacha", "None of the above"],
+        ans: 1,
+        cat: "Dynasties & Rulers",
+        exp: "Muhammad Ghori appointed his loyal slave general Qutbuddin Aibak as viceroy."
+      },
+      {
+        q: "What is the literal meaning of the Arabic word 'Mamluk'?",
+        opts: ["Victorious general", "Religious warrior", "Supreme ruler", "Holy sovereign", "None of the above"],
+        ans: 4,
+        cat: "Dynasties",
+        exp: "The Arabic word 'Mamluk' literally translates to 'owned'."
+      },
+      {
+        q: "Why were the early rulers of the Slave Dynasty called 'Mamluk Sultans'?",
+        opts: [
+          "They were born into royal Arabian houses",
+          "They were earlier either slaves of the Turks or sons of slaves",
+          "They were appointed directly by the Caliph",
+          "They were elected by tribal councils",
+          "None of the above"
+        ],
+        ans: 1,
+        cat: "Dynasties",
+        exp: "They were titled Mamluk because they were originally slaves of the Turks or the sons of slaves."
+      },
+      {
+        q: "The last ruler of the Slave Dynasty, murdered in 1290, was:",
+        opts: ["Ghiyas-ud-din Balban", "Nasiruddin Mahmud", "Kaikubad", "Aram Shah", "None of the above"],
+        ans: 2,
+        cat: "Dynasties",
+        exp: "Kaikubad was murdered in 1290, which marked the end of the Slave Dynasty."
+      },
+      {
+        q: "Who was the founder of the Khilji Dynasty?",
+        opts: ["Alauddin Khilji", "Jalaluddin Khilji", "Malik Kafur", "Shihabuddin Masud", "None of the above"],
+        ans: 1,
+        cat: "Dynasties",
+        exp: "Jalaluddin Khilji established the Khilji Dynasty after killing Kaikubad in 1290."
+      },
+      {
+        q: "How did Alauddin Khilji ascend the throne of Delhi?",
+        opts: [
+          "Through peaceful succession after his father's death",
+          "By election by the Turkish nobles",
+          "By murdering his uncle Jalaluddin Khilji",
+          "By defeating the Mongols at the gates of Delhi",
+          "None of the above"
+        ],
+        ans: 2,
+        cat: "Dynasties & Rulers",
+        exp: "Alauddin murdered his uncle and father-in-law Jalaluddin Khilji to seize the throne."
+      },
+      {
+        q: "Which rebellion did Alauddin Khilji have to crush immediately upon ascending the throne?",
+        opts: [
+          "A revolt by Rajput chieftains in Mewar",
+          "A rebellion of Mongols who had earlier settled near Delhi",
+          "A revolt by governors in Bengal",
+          "An uprising by Afghan mercenaries",
+          "None of the above"
+        ],
+        ans: 1,
+        cat: "Dynasties & Rulers",
+        exp: "Upon ascension, Alauddin crushed an immediate uprising by settled Mongols near Delhi."
+      },
+      {
+        q: "Which territories of Malwa were conquered by Alauddin Khilji?",
+        opts: ["Ujjain", "Dhar", "Chanderi", "Mandu", "All of the above"],
+        ans: 4,
+        cat: "Dynasties & Rulers",
+        exp: "Alauddin conquered all major Malwa territories including Ujjain, Dhar, Chanderi, and Mandu."
+      },
+      {
+        q: "By which year had Alauddin Khilji conquered most of northern India?",
+        opts: ["1296", "1300", "1305", "1320", "None of the above"],
+        ans: 2,
+        cat: "Chronology",
+        exp: "By 1305, Alauddin Khilji had brought the vast majority of northern India under his control."
+      },
+      {
+        q: "Which three separate markets did Alauddin Khilji set up in Delhi under his market regulations?",
+        opts: [
+          "One for food grains",
+          "A second for costly cloth",
+          "A third for horses, slaves, and cattle",
+          "All of the specialized markets above",
+          "None of the above"
+        ],
+        ans: 3,
+        cat: "Administration & Economy",
+        exp: "He organized three distinct markets: food grains; costly cloth; and horses, slaves, and cattle."
+      },
+      {
+        q: "Under Alauddin Khilji's market control policy, what was the title of the controller placed in charge of each market?",
+        opts: ["Muqaddam", "Shahna", "Kotwal", "Amil", "None of the above"],
+        ans: 1,
+        cat: "Administration & Economy",
+        exp: "Each regulated market was supervised by an imperial controller titled the 'Shahna'."
+      },
+      {
+        q: "Which commander led Alauddin Khilji's successful military expeditions into the Deccan?",
+        opts: ["Ulugh Khan", "Malik Kafur", "Zafar Khan", "Ghazi Malik", "None of the above"],
+        ans: 1,
+        cat: "Military & Expansion",
+        exp: "His prominent general Malik Kafur led the successful military campaigns across southern India."
+      },
+      {
+        q: "Which Deccan kingdoms were conquered during Alauddin Khilji's southern campaigns?",
+        opts: ["Devagiri", "Warangal", "Dwarasamudra", "Madurai", "All of the above"],
+        ans: 4,
+        cat: "Military & Expansion",
+        exp: "Malik Kafur subjugated Devagiri, Warangal, Dwarasamudra, and Madurai."
+      },
+      {
+        q: "Why did Alauddin Khilji decide NOT to annex the conquered Deccan kingdoms directly into his empire?",
+        opts: [
+          "He realised it would be difficult to control such distant lands from Delhi",
+          "He was primarily interested in acquiring their wealth to maintain his huge army",
+          "The Deccan rulers agreed to accept his overlordship and pay annual tribute",
+          "Both A and B",
+          "None of the above"
+        ],
+        ans: 3,
+        cat: "Military & Expansion",
+        exp: "Ruling distant southern realms was impractical, and his goal was tributive wealth to maintain his army."
+      },
+      {
+        q: "Which measures were implemented by Alauddin Khilji to curb the power of the nobility?",
+        opts: [
+          "Nobles were forbidden from holding parties or festivities without imperial permission",
+          "Marriage alliances among noble families required the Sultan's consent",
+          "The use of wine and intoxicants was strictly banned",
+          "Gambling was prohibited, and an efficient spy system was established",
+          "All of the above"
+        ],
+        ans: 4,
+        cat: "Administration & Economy",
+        exp: "Alauddin prohibited gatherings, monitored marriages, banned intoxicants, and placed spies among nobles."
+      },
+      {
+        q: "What was the purpose of the dagh and chehra systems introduced in Alauddin Khilji's military reforms?",
+        opts: [
+          "Dagh was horse-branding; chehra was a descriptive identity card for each soldier",
+          "Dagh was land survey; chehra was royal court uniform",
+          "Dagh was coin minting; chehra was tax registration",
+          "Dagh was border watch; chehra was market licensing",
+          "None of the above"
+        ],
+        ans: 0,
+        cat: "Military & Expansion",
+        exp: "Dagh branded warhorses to prevent substitution; chehra maintained a descriptive identity roll for each soldier."
+      },
+      {
+        q: "Under Alauddin Khilji's revenue reforms, the state share of land revenue was raised to:",
+        opts: [
+          "One-fourth of the produce",
+          "One-third of the produce",
+          "One-half (50%) of the produce",
+          "Two-thirds of the produce",
+          "None of the above"
+        ],
+        ans: 2,
+        cat: "Administration & Economy",
+        exp: "The land revenue share was raised to one-half (50%) of the produce, collected strictly in cash."
+      },
+      {
+        q: "Who founded the Tughlaq Dynasty in 1320 after the fall of the Khiljis?",
+        opts: [
+          "Jauna Khan",
+          "Ghazi Malik (Ghiyas-ud-din Tughlaq Shah)",
+          "Feroz Shah Tughlaq",
+          "Malik Kafur",
+          "None of the above"
+        ],
+        ans: 1,
+        cat: "Dynasties & Rulers",
+        exp: "Ghazi Malik, Governor of Dipalpur, ascended the throne in 1320 as Ghiyas-ud-din Tughlaq Shah."
+      },
+      {
+        q: "How did Ghiyas-ud-din Tughlaq die in 1325?",
+        opts: [
+          "He was killed in battle against Mongol invaders",
+          "He died during the collapse of a wooden pavilion built in his honour",
+          "He died of a severe illness during a famine",
+          "He was murdered in his sleep by court nobles",
+          "None of the above"
+        ],
+        ans: 1,
+        cat: "Dynasties & Rulers",
+        exp: "Ghiyas-ud-din Tughlaq died in 1325 when a celebratory wooden pavilion collapsed upon him."
+      },
+      {
+        q: "Which intellectual and cultural disciplines did Muhammad Bin Tughlaq master?",
+        opts: [
+          "Religion, philosophy, logic, and physical sciences",
+          "Mathematics and astronomy",
+          "Persian literature, music, fine arts, and calligraphy",
+          "Islamic jurisprudence and theology",
+          "All of the above"
+        ],
+        ans: 4,
+        cat: "Dynasties & Rulers",
+        exp: "Muhammad Bin Tughlaq was exceptionally learned across logic, astronomy, mathematics, arts, and sciences."
+      },
+      {
+        q: "Why did Muhammad Bin Tughlaq decide to transfer his capital from Delhi to Devagiri (Daulatabad)?",
+        opts: [
+          "Daulatabad was centrally located to control the Deccan territories",
+          "Delhi was suffering under a severe famine",
+          "Delhi faced recurring threats of Mongol invasions",
+          "His empire had expanded significantly into the south",
+          "All of the above"
+        ],
+        ans: 4,
+        cat: "Administration & Economy",
+        exp: "Central location, severe famine in Delhi, and recurring Mongol raids motivated the capital relocation."
+      }
+    ];
+
+    /* ==============================================================
+       3. REVISION ENGINE STATE & CONTROLLER
+    ============================================================== */
+    const State = {
+      studentName: "Scholar",
+      currentQuizSet: [],
+      currentIndex: 0,
+      score: 0,
+      correctCount: 0,
+      wrongCount: 0,
+      unansweredCount: 0,
+      timerSec: 20,
+      timerInterval: null,
+      isAnswerLocked: false,
+      missedQuestions: [],
+      categoryStats: {}
+    };
+
+    function goToScreen(screenId) {
+      AudioEngine.init();
+      const screens = [
+        'screenWelcome', 'screenName', 'screenIntro', 
+        'screenInstructions', 'screenChapterCard', 
+        'screenQuiz', 'screenAnalyzing', 'screenResult'
+      ];
+      screens.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = (id === screenId) ? 'block' : 'none';
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* Name Submission & Animated Typewriter Greeting */
+    function handleNameSubmit() {
+      const input = document.getElementById('studentNameInput');
+      const val = input.value.trim();
+      if (!val) {
+        input.focus();
+        input.style.borderColor = "var(--danger)";
+        return;
+      }
+      State.studentName = val;
+      document.getElementById('dynamicGreeting').textContent = `Hello, ${State.studentName}!`;
+      document.getElementById('dynStartName').textContent = `, ${State.studentName.toUpperCase()}`;
+      document.getElementById('quizBarStudentName').textContent = State.studentName.toUpperCase();
+      document.getElementById('resultGreeting').textContent = `Well done, ${State.studentName}!`;
+      
+      goToScreen('screenIntro');
+      runTypewriterEffect();
+    }
+
+    function runTypewriterEffect() {
+      const txt = `“Welcome to your Delhi Sultanate chapter revision session. I will guide you through 50 examination-oriented questions covering rulers, monuments, administration, and reforms. Each item carries 1 mark and you have 20 seconds to answer. Ready, ${State.studentName}?”`;
+      const target = document.getElementById('typewriterText');
+      const btn = document.getElementById('introNextBtn');
+      target.textContent = "";
+      btn.style.display = "none";
+
+      let i = 0;
+      const speed = 18;
+      function step() {
+        if (i < txt.length) {
+          target.textContent += txt.charAt(i);
+          i++;
+          setTimeout(step, speed);
+        } else {
+          btn.style.display = "flex";
+        }
+      }
+      step();
+    }
+
+    function toggleRuleStartBtn() {
+      const cb = document.getElementById('rulesCheckbox');
+      document.getElementById('startRevBtn').disabled = !cb.checked;
+    }
+
+    /* Start Full Quiz */
+    function startQuizSession() {
+      State.currentQuizSet = [...QUESTION_BANK];
+      State.currentIndex = 0;
+      State.score = 0;
+      State.correctCount = 0;
+      State.wrongCount = 0;
+      State.unansweredCount = 0;
+      State.missedQuestions = [];
+      initCategoryTracking();
+
+      goToScreen('screenQuiz');
+      renderCurrentQuestion();
+    }
+
+    function initCategoryTracking() {
+      State.categoryStats = {};
+      State.currentQuizSet.forEach(item => {
+        if (!State.categoryStats[item.cat]) {
+          State.categoryStats[item.cat] = { total: 0, correct: 0 };
+        }
+        State.categoryStats[item.cat].total++;
+      });
+    }
+
+    /* Render Active Question */
+    function renderCurrentQuestion() {
+      clearInterval(State.timerInterval);
+      State.isAnswerLocked = false;
+      State.timerSec = 20;
+
+      const q = State.currentQuizSet[State.currentIndex];
+      const total = State.currentQuizSet.length;
+      const qNum = State.currentIndex + 1;
+
+      // Update Labels & Progress Bar
+      document.getElementById('questionNumLabel').textContent = `QUESTION ${qNum < 10 ? '0' + qNum : qNum} / ${total < 10 ? '0' + total : total}`;
+      document.getElementById('scorePill').textContent = `SCORE: ${State.score < 10 ? '0' + State.score : State.score}`;
+      document.getElementById('qCategory').textContent = q.cat;
+      document.getElementById('qText').textContent = q.q;
+
+      const pct = Math.round((qNum / total) * 100);
+      document.getElementById('pctProgressLabel').textContent = `${pct}%`;
+      document.getElementById('progressFill').style.width = `${pct}%`;
+
+      // Hide Next Button & AI Bubble
+      document.getElementById('nextQuestionBtn').style.display = 'none';
+      const speechBox = document.getElementById('aiSpeechBox');
+      speechBox.style.display = 'none';
+
+      // Render 5 Options
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D', 'E'];
+
+      q.opts.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.id = `optBtn_${idx}`;
+        btn.onclick = () => handleOptionSelection(idx);
+
+        btn.innerHTML = `
+          <div class="opt-key">${letters[idx]}</div>
+          <div style="flex:1;">${optText}</div>
+        `;
+        container.appendChild(btn);
+      });
+
+      startCountdownTimer();
+    }
+
+    /* Countdown Timer System */
+    function startCountdownTimer() {
+      updateTimerDisplay();
+      State.timerInterval = setInterval(() => {
+        State.timerSec--;
+        if (State.timerSec <= 5 && State.timerSec > 0) {
+          AudioEngine.playTick();
+        }
+        updateTimerDisplay();
+
+        if (State.timerSec <= 0) {
+          clearInterval(State.timerInterval);
+          handleTimeout();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const circle = document.getElementById('timerCircle');
+      const label = document.getElementById('timerLabel');
+      label.textContent = State.timerSec;
+
+      // Circumference for r=25 is 2 * PI * 25 ≈ 157
+      const offset = 157 - (157 * State.timerSec) / 20;
+      circle.style.strokeDashoffset = offset;
+
+      if (State.timerSec <= 5) {
+        circle.classList.add('danger');
+      } else {
+        circle.classList.remove('danger');
+      }
+    }
+
+    /* Answer Selection Handling */
+    function handleOptionSelection(selectedIdx) {
+      if (State.isAnswerLocked) return;
+      State.isAnswerLocked = true;
+      clearInterval(State.timerInterval);
+
+      const q = State.currentQuizSet[State.currentIndex];
+      const correctIdx = q.ans;
+      const opts = document.querySelectorAll('.option-btn');
+      opts.forEach(b => b.disabled = true);
+
+      const speechBox = document.getElementById('aiSpeechBox');
+      const speechText = document.getElementById('aiSpeechText');
+
+      if (selectedIdx === correctIdx) {
+        // Correct
+        AudioEngine.playSuccess();
+        document.getElementById(`optBtn_${selectedIdx}`).classList.add('selected-correct');
+        State.score++;
+        State.correctCount++;
+        State.categoryStats[q.cat].correct++;
+
+        speechText.innerHTML = `<strong>Splendid, ${State.studentName}!</strong> That is completely correct (+1 mark).<br><span style="color:#B8CADF; font-size:12.5px; margin-top:3px; display:inline-block;">${q.exp}</span>`;
+      } else {
+        // Wrong
+        AudioEngine.playWrong();
+        document.getElementById(`optBtn_${selectedIdx}`).classList.add('selected-wrong');
+        document.getElementById(`optBtn_${correctIdx}`).classList.add('correct-reveal');
+        State.wrongCount++;
+        State.missedQuestions.push(q);
+
+        const letters = ['A', 'B', 'C', 'D', 'E'];
+        speechText.innerHTML = `<strong>Not quite, ${State.studentName}.</strong> The correct answer was <strong>${letters[correctIdx]}: ${q.opts[correctIdx]}</strong>.<br><span style="color:#B8CADF; font-size:12.5px; margin-top:3px; display:inline-block;">${q.exp}</span>`;
+      }
+
+      document.getElementById('scorePill').textContent = `SCORE: ${State.score < 10 ? '0' + State.score : State.score}`;
+      speechBox.style.display = 'block';
+      document.getElementById('nextQuestionBtn').style.display = 'flex';
+    }
+
+    /* Timeout Handling */
+    function handleTimeout() {
+      if (State.isAnswerLocked) return;
+      State.isAnswerLocked = true;
+      AudioEngine.playWrong();
+
+      const q = State.currentQuizSet[State.currentIndex];
+      const correctIdx = q.ans;
+      const opts = document.querySelectorAll('.option-btn');
+      opts.forEach(b => b.disabled = true);
+
+      document.getElementById(`optBtn_${correctIdx}`).classList.add('correct-reveal');
+      State.unansweredCount++;
+      State.missedQuestions.push(q);
+
+      const letters = ['A', 'B', 'C', 'D', 'E'];
+      const speechBox = document.getElementById('aiSpeechBox');
+      const speechText = document.getElementById('aiSpeechText');
+      speechText.innerHTML = `<strong>Time's up, ${State.studentName}!</strong> The correct response is <strong>${letters[correctIdx]}: ${q.opts[correctIdx]}</strong>.<br><span style="color:#B8CADF; font-size:12.5px; margin-top:3px; display:inline-block;">${q.exp}</span>`;
+      speechBox.style.display = 'block';
+
+      document.getElementById('nextQuestionBtn').style.display = 'flex';
+    }
+
+    /* Move to Next Question or Final Results */
+    function handleNextQuestion() {
+      State.currentIndex++;
+      if (State.currentIndex < State.currentQuizSet.length) {
+        renderCurrentQuestion();
+      } else {
+        showAnalyzingScreen();
+      }
+    }
+
+    /* Analyzing Animation Screen */
+    function showAnalyzingScreen() {
+      goToScreen('screenAnalyzing');
+      setTimeout(() => {
+        renderFinalResults();
+      }, 1600);
+    }
+
+    /* Render Results & Diagnostic Breakdown */
+    function renderFinalResults() {
+      goToScreen('screenResult');
+
+      const total = State.currentQuizSet.length;
+      const pct = Math.round((State.score / total) * 100);
+
+      document.getElementById('finalScoreNum').textContent = `${State.score}/${total}`;
+      document.getElementById('finalPctNum').textContent = `${pct}% REVISION SCORE`;
+      document.getElementById('statCorrect').textContent = State.correctCount;
+      document.getElementById('statWrong').textContent = State.wrongCount;
+      document.getElementById('statUnanswered').textContent = State.unansweredCount;
+
+      // Animate Circular Ring (r=40, circum = 2 * PI * 40 ≈ 251.2)
+      setTimeout(() => {
+        const ring = document.getElementById('finalScoreCircle');
+        const offset = 251.2 - (251.2 * pct) / 100;
+        ring.style.strokeDashoffset = offset;
+      }, 150);
+
+      // AI Diagnostic Commentary
+      const aiBox = document.getElementById('aiSummaryEvaluation');
+      let evalMsg = "";
+      if (pct >= 85) {
+        evalMsg = `“Outstanding performance, <strong>${State.studentName}</strong>! You scored <strong>${State.score} out of ${total}</strong> (${pct}%). Your command over the Delhi Sultanate syllabus—especially key architectural features and administrative measures—is commendable. You are well prepared for your examination!”`;
+      } else if (pct >= 60) {
+        evalMsg = `“Solid revision attempt, <strong>${State.studentName}</strong>! You achieved <strong>${State.score} out of ${total}</strong> (${pct}%). You demonstrated a strong conceptual foundation, but there are a few missed details in dynasties or chronology. Review the highlighted areas below to turn this into full marks.”`;
+      } else {
+        evalMsg = `“Revision session completed, <strong>${State.studentName}</strong>. Your aggregate score is <strong>${State.score} out of ${total}</strong> (${pct}%). Don't worry—use this diagnostic result as a revision roadmap. Focus on the low-scoring categories below and retake the mistakes session to reinforce your retention.”`;
+      }
+      aiBox.innerHTML = evalMsg;
+
+      // Category Progress Bars
+      const catContainer = document.getElementById('categoryBarsContainer');
+      catContainer.innerHTML = '';
+
+      for (const [catName, data] of Object.entries(State.categoryStats)) {
+        const catPct = Math.round((data.correct / data.total) * 100) || 0;
+        const item = document.createElement('div');
+        item.className = 'cat-bar-item';
+        item.innerHTML = `
+          <div class="cat-bar-header">
+            <span>${catName}</span>
+            <span><strong>${data.correct}/${data.total}</strong> (${catPct}%)</span>
+          </div>
+          <div class="cat-bar-rail">
+            <div class="cat-bar-fill" id="catBar_${catName.replace(/[^a-zA-Z]/g, '')}"></div>
+          </div>
+        `;
+        catContainer.appendChild(item);
+
+        setTimeout(() => {
+          const fill = document.getElementById(`catBar_${catName.replace(/[^a-zA-Z]/g, '')}`);
+          if (fill) fill.style.width = `${catPct}%`;
+        }, 200);
+      }
+
+      // Configure Revise Mistakes Button
+      const reviseBtn = document.getElementById('reviseMistakesBtn');
+      if (State.missedQuestions.length > 0) {
+        reviseBtn.style.display = 'flex';
+        reviseBtn.innerHTML = `REVISE MISTAKES ONLY (${State.missedQuestions.length}) <span>✦</span>`;
+      } else {
+        reviseBtn.style.display = 'none';
+      }
+    }
+
+    /* Mistakes Revision Session */
+    function startMistakesRevision() {
+      if (State.missedQuestions.length === 0) return;
+      State.currentQuizSet = [...State.missedQuestions];
+      State.currentIndex = 0;
+      State.score = 0;
+      State.correctCount = 0;
+      State.wrongCount = 0;
+      State.unansweredCount = 0;
+      State.missedQuestions = [];
+      initCategoryTracking();
+
+      goToScreen('screenQuiz');
+      renderCurrentQuestion();
+    }
+
+    /* Restart Full Quiz */
+    function restartEntireQuiz() {
+      goToScreen('screenChapterCard');
+    }
+
+    // Initialize user interaction for Web Audio API context
+    window.addEventListener('click', () => AudioEngine.init(), { once: true });
+    window.addEventListener('touchstart', () => AudioEngine.init(), { once: true });
+  </script>
+</body>
+</html>
