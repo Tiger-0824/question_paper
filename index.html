@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>THE OCEANS — AI Revision Assistant</title>
+  <title>ENGLISH 1: PARTS OF SPEECH — AI Revision Assistant</title>
   
   <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,21 +12,20 @@
 
   <style>
     /* --------------------------------------------------
-       OCEANIC AI THEME VARIABLES
+       SCHOLAR ACADEMY AI PALETTE & VARIABLES
     -------------------------------------------------- */
     :root {
-      --bg-abyss: #040914;
-      --ocean-deep: #08152B;
-      --ocean-card: rgba(10, 24, 48, 0.88);
-      --card-border: rgba(0, 240, 255, 0.28);
-      --cyan-glow: #00F0FF;
-      --cyan-soft: #70E2FF;
+      --bg-dark: #0A0E17;
+      --card-bg: rgba(16, 23, 38, 0.92);
+      --card-border: rgba(212, 168, 79, 0.3);
       --antique-gold: #D4A84F;
       --bright-gold: #F5D27A;
-      --coral-accent: #E63946;
-      --seafoam-green: #2EC4B6;
-      --text-main: #F4F9FD;
-      --text-muted: #95ACC4;
+      --ai-cyan: #38BDF8;
+      --deep-navy: #0F172A;
+      --success-green: #10B981;
+      --danger-red: #EF4444;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
       --font-title: 'Cinzel', Georgia, serif;
       --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -40,7 +39,7 @@
     }
 
     body {
-      background-color: var(--bg-abyss);
+      background-color: var(--bg-dark);
       color: var(--text-main);
       font-family: var(--font-body);
       min-height: 100vh;
@@ -53,28 +52,28 @@
       padding: 16px;
     }
 
-    /* Ambient Deep Sea Glow */
-    .bg-ocean-ambient {
+    /* Ambient Scholarly Mesh Background */
+    .bg-ambient {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
       background:
-        radial-gradient(circle at 50% 5%, rgba(0, 240, 255, 0.16), transparent 50%),
-        radial-gradient(circle at 85% 85%, rgba(13, 71, 161, 0.28), transparent 45%),
-        radial-gradient(circle at 15% 90%, rgba(212, 168, 79, 0.18), transparent 45%);
+        radial-gradient(circle at 50% 10%, rgba(56, 189, 248, 0.15), transparent 50%),
+        radial-gradient(circle at 80% 90%, rgba(212, 168, 79, 0.18), transparent 45%),
+        radial-gradient(circle at 20% 85%, rgba(15, 23, 42, 0.45), transparent 50%);
     }
 
-    .bg-grid-mesh {
+    .bg-grid {
       position: fixed;
       inset: 0;
       opacity: 0.04;
       pointer-events: none;
       z-index: 0;
       background-image: 
-        radial-gradient(var(--cyan-glow) 1px, transparent 1px),
-        linear-gradient(to right, rgba(0, 240, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
+        radial-gradient(var(--antique-gold) 1px, transparent 1px),
+        linear-gradient(to right, rgba(212, 168, 79, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(212, 168, 79, 0.1) 1px, transparent 1px);
       background-size: 32px 32px;
     }
 
@@ -89,16 +88,16 @@
       gap: 16px;
     }
 
-    /* Oceanic Card Shell */
+    /* Container Card */
     .sultan-card {
-      background: var(--ocean-card);
+      background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 18px;
       padding: 28px 24px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(0, 240, 255, 0.2);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(245, 210, 122, 0.18);
       backdrop-filter: blur(14px);
       position: relative;
-      animation: cardFadeIn 0.35s ease-out forwards;
+      animation: cardFade 0.35s ease-out forwards;
     }
 
     .sultan-card::before {
@@ -108,10 +107,10 @@
       left: 15%;
       right: 15%;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--cyan-glow), transparent);
+      background: linear-gradient(90deg, transparent, var(--bright-gold), transparent);
     }
 
-    /* Bioluminescent AI Orb */
+    /* AI Avatar Orb */
     .ai-orb-wrap {
       display: flex;
       align-items: center;
@@ -126,8 +125,8 @@
       width: 52px;
       height: 52px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #fff, var(--cyan-glow) 40%, var(--ocean-deep) 90%);
-      box-shadow: 0 0 25px rgba(0, 240, 255, 0.7), 0 0 45px rgba(212, 168, 79, 0.3);
+      background: radial-gradient(circle at 35% 35%, #fff, var(--ai-cyan) 40%, var(--deep-navy) 90%);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.65), 0 0 45px rgba(212, 168, 79, 0.3);
       position: relative;
       display: flex;
       align-items: center;
@@ -139,24 +138,24 @@
     .ai-orb-ring {
       position: absolute;
       inset: -8px;
-      border: 1.5px dashed var(--bright-gold);
+      border: 1.5px dashed var(--antique-gold);
       border-radius: 50%;
       animation: ringSpin 14s linear infinite;
       opacity: 0.65;
     }
 
     .ai-orb.correct {
-      background: radial-gradient(circle at 35% 35%, #fff, var(--seafoam-green) 45%, #033e38 95%);
-      box-shadow: 0 0 35px rgba(46, 196, 182, 0.85);
+      background: radial-gradient(circle at 35% 35%, #fff, var(--success-green) 45%, #064e3b 95%);
+      box-shadow: 0 0 35px rgba(16, 185, 129, 0.85);
     }
 
     .ai-orb.wrong {
-      background: radial-gradient(circle at 35% 35%, #fff, var(--coral-accent) 45%, #470d13 95%);
-      box-shadow: 0 0 35px rgba(230, 57, 70, 0.85);
+      background: radial-gradient(circle at 35% 35%, #fff, var(--danger-red) 45%, #450a0a 95%);
+      box-shadow: 0 0 35px rgba(239, 68, 68, 0.85);
       animation: orbShake 0.4s ease-in-out;
     }
 
-    /* Badges & Titles */
+    /* Headings & Texts */
     .badge-tag {
       font-family: var(--font-title);
       color: var(--bright-gold);
@@ -174,20 +173,20 @@
     .badge-tag::before, .badge-tag::after {
       content: "✦";
       font-size: 9px;
-      color: var(--cyan-glow);
+      color: var(--antique-gold);
     }
 
     h1.title-main {
       font-family: var(--font-title);
-      font-size: 32px;
-      font-weight: 900;
+      font-size: 30px;
+      font-weight: 800;
       text-align: center;
-      letter-spacing: 1.8px;
-      background: linear-gradient(180deg, #FFFFFF 15%, var(--cyan-soft) 60%, var(--antique-gold) 100%);
+      letter-spacing: 1.5px;
+      background: linear-gradient(180deg, #FFFFFF 15%, var(--bright-gold) 65%, var(--antique-gold) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 6px;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
     }
 
     .subtitle-main {
@@ -212,10 +211,10 @@
       content: "";
       height: 1px;
       width: 60px;
-      background: linear-gradient(90deg, transparent, var(--cyan-glow), transparent);
+      background: linear-gradient(90deg, transparent, var(--antique-gold), transparent);
     }
 
-    /* Buttons */
+    /* Primary Action Buttons */
     .btn-sultan {
       display: flex;
       align-items: center;
@@ -224,7 +223,7 @@
       width: 100%;
       min-height: 52px;
       padding: 14px 24px;
-      background: linear-gradient(135deg, #0d3b66, #091a36);
+      background: linear-gradient(135deg, #1E293B, #0F172A);
       color: #FFF;
       border: 1px solid var(--bright-gold);
       border-radius: 12px;
@@ -233,15 +232,15 @@
       font-weight: 700;
       letter-spacing: 1px;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(4, 18, 38, 0.6);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
       transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
       margin-top: 14px;
     }
 
     .btn-sultan:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(0, 240, 255, 0.35);
-      background: linear-gradient(135deg, #114b82, #0d2854);
+      box-shadow: 0 10px 26px rgba(212, 168, 79, 0.35);
+      background: linear-gradient(135deg, #334155, #1E293B);
     }
 
     .btn-sultan:active {
@@ -249,7 +248,7 @@
     }
 
     .btn-sultan.secondary {
-      background: rgba(8, 21, 43, 0.7);
+      background: rgba(15, 23, 42, 0.7);
       border: 1px solid rgba(212, 168, 79, 0.4);
       color: var(--bright-gold);
     }
@@ -261,11 +260,11 @@
       box-shadow: none !important;
     }
 
-    /* Input */
+    /* Input Field */
     .input-sultan {
       width: 100%;
-      background: rgba(4, 9, 20, 0.75);
-      border: 1.5px solid rgba(0, 240, 255, 0.35);
+      background: rgba(10, 14, 23, 0.8);
+      border: 1.5px solid rgba(212, 168, 79, 0.4);
       border-radius: 12px;
       color: #FFF;
       font-family: var(--font-body);
@@ -277,11 +276,11 @@
     }
 
     .input-sultan:focus {
-      border-color: var(--cyan-glow);
-      box-shadow: 0 0 16px rgba(0, 240, 255, 0.3);
+      border-color: var(--bright-gold);
+      box-shadow: 0 0 16px rgba(245, 210, 122, 0.25);
     }
 
-    /* Rules Grid */
+    /* Instructions Grid */
     .instruction-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -296,20 +295,20 @@
       width: 4px;
     }
     .instruction-grid::-webkit-scrollbar-thumb {
-      background: var(--cyan-glow);
+      background: var(--antique-gold);
       border-radius: 4px;
     }
 
     .rule-item {
       display: flex;
       gap: 12px;
-      background: rgba(8, 21, 43, 0.5);
-      border: 1px solid rgba(0, 240, 255, 0.15);
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(212, 168, 79, 0.15);
       border-radius: 10px;
       padding: 10px 14px;
       font-size: 13.5px;
       line-height: 1.45;
-      color: #DDE8F4;
+      color: #E2E8F0;
     }
 
     .rule-num {
@@ -326,7 +325,7 @@
       justify-content: space-between;
       margin-bottom: 14px;
       padding-bottom: 12px;
-      border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+      border-bottom: 1px solid rgba(212, 168, 79, 0.2);
     }
 
     .student-badge {
@@ -342,21 +341,21 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--cyan-glow);
-      box-shadow: 0 0 8px var(--cyan-glow);
+      background: var(--ai-cyan);
+      box-shadow: 0 0 8px var(--ai-cyan);
     }
 
     .stats-pill {
       font-family: var(--font-title);
       font-size: 13px;
       color: var(--text-main);
-      background: rgba(13, 71, 161, 0.4);
-      border: 1px solid rgba(0, 240, 255, 0.3);
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(212, 168, 79, 0.3);
       padding: 4px 10px;
       border-radius: 20px;
     }
 
-    /* 30-Second Circular Timer */
+    /* 30-Second Countdown Timer */
     .timer-wrap {
       display: flex;
       align-items: center;
@@ -387,7 +386,7 @@
     }
 
     .timer-bar {
-      stroke: var(--cyan-glow);
+      stroke: var(--antique-gold);
       stroke-dasharray: 157;
       stroke-dashoffset: 0;
       stroke-linecap: round;
@@ -407,7 +406,7 @@
     }
 
     .timer-bar.danger {
-      stroke: var(--coral-accent);
+      stroke: var(--danger-red);
       animation: timerPulse 0.5s infinite alternate;
     }
 
@@ -421,17 +420,17 @@
 
     .progress-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, #0d3b66, var(--cyan-glow));
-      width: 2%;
+      background: linear-gradient(90deg, #1E293B, var(--bright-gold));
+      width: 3%;
       transition: width 0.3s ease;
     }
 
-    /* Question & Diagram Presentation */
+    /* Question & Category */
     .question-category {
       font-family: var(--font-title);
       font-size: 11px;
       letter-spacing: 1.5px;
-      color: var(--cyan-glow);
+      color: var(--ai-cyan);
       text-transform: uppercase;
       margin-bottom: 6px;
     }
@@ -441,28 +440,10 @@
       line-height: 1.55;
       font-weight: 600;
       color: #FFF;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
-    .q-image-box {
-      margin-bottom: 14px;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid rgba(0, 240, 255, 0.3);
-      max-height: 180px;
-      display: none;
-      background: rgba(4, 9, 20, 0.8);
-      text-align: center;
-    }
-
-    .q-image-box img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* 5 Options System */
+    /* 5 Options Grid */
     .options-grid {
       display: flex;
       flex-direction: column;
@@ -477,8 +458,8 @@
       width: 100%;
       min-height: 48px;
       padding: 10px 14px;
-      background: rgba(6, 17, 36, 0.65);
-      border: 1px solid rgba(0, 240, 255, 0.2);
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(212, 168, 79, 0.22);
       border-radius: 10px;
       color: var(--text-main);
       font-family: var(--font-body);
@@ -490,8 +471,8 @@
     }
 
     .option-btn:hover:not(:disabled) {
-      border-color: var(--cyan-glow);
-      background: rgba(13, 71, 161, 0.35);
+      border-color: var(--bright-gold);
+      background: rgba(30, 41, 59, 0.5);
       transform: translateX(4px);
     }
 
@@ -502,8 +483,8 @@
       width: 26px;
       height: 26px;
       border-radius: 6px;
-      background: rgba(0, 240, 255, 0.12);
-      border: 1px solid var(--cyan-glow);
+      background: rgba(212, 168, 79, 0.15);
+      border: 1px solid var(--antique-gold);
       color: var(--bright-gold);
       font-family: var(--font-title);
       font-weight: 700;
@@ -512,40 +493,40 @@
     }
 
     .option-btn.selected-correct {
-      background: rgba(46, 196, 182, 0.2) !important;
-      border-color: var(--seafoam-green) !important;
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--success-green) !important;
       color: #E6FFF9 !important;
     }
     .option-btn.selected-correct .opt-key {
-      background: var(--seafoam-green);
-      color: #040914;
-      border-color: var(--seafoam-green);
+      background: var(--success-green);
+      color: #0A0E17;
+      border-color: var(--success-green);
     }
 
     .option-btn.selected-wrong {
-      background: rgba(230, 57, 70, 0.2) !important;
-      border-color: var(--coral-accent) !important;
+      background: rgba(239, 68, 68, 0.2) !important;
+      border-color: var(--danger-red) !important;
       color: #FFE6E6 !important;
     }
     .option-btn.selected-wrong .opt-key {
-      background: var(--coral-accent);
+      background: var(--danger-red);
       color: #FFF;
-      border-color: var(--coral-accent);
+      border-color: var(--danger-red);
     }
 
     .option-btn.correct-reveal {
-      border-color: var(--seafoam-green) !important;
-      background: rgba(46, 196, 182, 0.12) !important;
+      border-color: var(--success-green) !important;
+      background: rgba(16, 185, 129, 0.12) !important;
     }
 
-    /* AI Feedback Speech Bubble */
+    /* AI Live Feedback */
     .ai-speech-bubble {
-      background: rgba(6, 17, 36, 0.78);
-      border: 1px solid rgba(0, 240, 255, 0.35);
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.35);
       border-radius: 12px;
       padding: 12px 14px;
       margin-top: 10px;
-      animation: cardFadeIn 0.3s ease;
+      animation: cardFade 0.3s ease;
       display: none;
     }
 
@@ -555,18 +536,18 @@
       gap: 6px;
       font-family: var(--font-title);
       font-size: 11px;
-      color: var(--cyan-glow);
+      color: var(--ai-cyan);
       letter-spacing: 1px;
       margin-bottom: 4px;
     }
 
     .ai-speech-msg {
       font-size: 13.5px;
-      color: #EDF5FC;
+      color: #F1F5F9;
       line-height: 1.45;
     }
 
-    /* Final Result & Diagnostics */
+    /* Final Result & Snapshot */
     .score-circle-wrap {
       width: 130px;
       height: 130px;
@@ -614,8 +595,8 @@
     }
 
     .stat-badge {
-      background: rgba(8, 21, 43, 0.6);
-      border: 1px solid rgba(0, 240, 255, 0.25);
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(212, 168, 79, 0.25);
       border-radius: 10px;
       padding: 10px 8px;
       text-align: center;
@@ -635,7 +616,7 @@
       letter-spacing: 0.8px;
     }
 
-    /* Category Mastery Bars */
+    /* Category Mastery Breakdown */
     .category-breakdown {
       margin: 20px 0;
       text-align: left;
@@ -650,7 +631,7 @@
       justify-content: space-between;
       font-size: 12px;
       margin-bottom: 4px;
-      color: #CFE0F0;
+      color: #E2E8F0;
     }
 
     .cat-bar-rail {
@@ -662,7 +643,7 @@
 
     .cat-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, #0d3b66, var(--cyan-glow));
+      background: linear-gradient(90deg, #1E293B, var(--bright-gold));
       width: 0%;
       border-radius: 8px;
       transition: width 0.8s cubic-bezier(0.1, 0.8, 0.2, 1);
@@ -675,7 +656,7 @@
       padding: 12px;
       font-size: 12px;
       color: var(--text-muted);
-      border-top: 1px solid rgba(0, 240, 255, 0.15);
+      border-top: 1px solid rgba(212, 168, 79, 0.15);
     }
 
     .master-footer strong {
@@ -688,7 +669,7 @@
     }
 
     /* Keyframes */
-    @keyframes cardFadeIn {
+    @keyframes cardFade {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
@@ -717,16 +698,16 @@
 </head>
 <body>
 
-  <div class="bg-ocean-ambient"></div>
-  <div class="bg-grid-mesh"></div>
+  <div class="bg-ambient"></div>
+  <div class="bg-grid"></div>
 
   <div id="app">
 
     <!-- SCREEN 1: WELCOME SCREEN -->
     <div id="screenWelcome" class="sultan-card">
-      <div class="badge-tag">Geography AI Revision Assistant</div>
-      <h1 class="title-main">THE OCEANS</h1>
-      <p class="subtitle-main">ICSE Class IX • 50 Questions • 30s Timer</p>
+      <div class="badge-tag">English Grammar AI Revision Assistant</div>
+      <h1 class="title-main">PARTS OF SPEECH</h1>
+      <p class="subtitle-main">English 1 • 30 Questions • 30s Timer</p>
 
       <div class="ai-orb-wrap">
         <div class="ai-orb" id="welcomeOrb">
@@ -737,7 +718,7 @@
       <div class="gold-divider">✦</div>
 
       <p style="text-align:center; font-size:14px; color:var(--text-muted); line-height:1.6; margin-bottom:12px;">
-        A comprehensive chapter revision covering the Hydrosphere, continental drift, relief of ocean basins, salinity, currents, and the 5 major oceans.
+        A comprehensive grammar assessment covering Nouns, Pronouns, Adjectives, Verbs, Adverbs, Prepositions, Conjunctions, and Interjections.
       </p>
 
       <button class="btn-sultan" onclick="goToScreen('screenName')">
@@ -745,16 +726,16 @@
       </button>
 
       <div class="master-footer">
-        GEOGRAPHY AI REVISION SYSTEM
+        ENGLISH GRAMMAR REVISION SYSTEM
         <strong>MADE BY ABHISEK SIR</strong>
       </div>
     </div>
 
     <!-- SCREEN 2: NAME COLLECTION -->
     <div id="screenName" class="sultan-card" style="display:none;">
-      <div class="badge-tag">Scholar Verification</div>
+      <div class="badge-tag">Student Verification</div>
       <h1 class="title-main" style="font-size:24px;">BEFORE WE BEGIN...</h1>
-      <p class="subtitle-main">What should I call you during this revision session?</p>
+      <p class="subtitle-main">What should I call you during this grammar revision session?</p>
 
       <div style="margin: 22px 0;">
         <input 
@@ -784,11 +765,11 @@
         </div>
       </div>
 
-      <div class="badge-tag">Oceanic AI Tutor</div>
+      <div class="badge-tag">Grammar AI Tutor</div>
       <h1 class="title-main" id="dynamicGreeting" style="font-size:26px;">Hello, Scholar!</h1>
       
-      <div style="background:rgba(8,21,43,0.55); border:1px solid rgba(0,240,255,0.25); border-radius:12px; padding:18px; margin:16px 0; text-align:center; min-height:85px;">
-        <p id="typewriterText" style="font-size:14.5px; line-height:1.6; color:#E0ECF7;"></p>
+      <div style="background:rgba(15,23,42,0.55); border:1px solid rgba(212,168,79,0.25); border-radius:12px; padding:18px; margin:16px 0; text-align:center; min-height:85px;">
+        <p id="typewriterText" style="font-size:14.5px; line-height:1.6; color:#E2E8F0;"></p>
       </div>
 
       <button class="btn-sultan" id="introNextBtn" style="display:none;" onclick="goToScreen('screenInstructions')">
@@ -806,20 +787,20 @@
       <h1 class="title-main" style="font-size:24px;">REVISION RULES</h1>
       
       <div class="instruction-grid">
-        <div class="rule-item"><span class="rule-num">01.</span><div><strong>50 Questions:</strong> Covers all topics from ICSE Class IX Chapter 11 (The Oceans).</div></div>
-        <div class="rule-item"><span class="rule-num">02.</span><div><strong>Five Options:</strong> Every question includes five structured choices (A, B, C, D, and E).</div></div>
-        <div class="rule-item"><span class="rule-num">03.</span><div><strong>One Mark:</strong> Each correct response awards exactly 1 mark.</div></div>
-        <div class="rule-item"><span class="rule-num">04.</span><div><strong>50 Maximum Score:</strong> Aggregate benchmark total is 50 marks.</div></div>
-        <div class="rule-item"><span class="rule-num">05.</span><div><strong>30 Seconds:</strong> An individual countdown of 30 seconds is provided for each question.</div></div>
-        <div class="rule-item"><span class="rule-num">06.</span><div><strong>Automatic Timeout:</strong> Expiring timer records the item as unanswered and reveals the key.</div></div>
-        <div class="rule-item"><span class="rule-num">07.</span><div><strong>No Negative Marks:</strong> Zero penalty marks for incorrect attempts.</div></div>
-        <div class="rule-item"><span class="rule-num">08.</span><div><strong>Answer Locking:</strong> Once an option is chosen, the selection is committed.</div></div>
-        <div class="rule-item"><span class="rule-num">09.</span><div><strong>Instant AI Feedback:</strong> Educational explanations follow every submission.</div></div>
-        <div class="rule-item"><span class="rule-num">10.</span><div><strong>Revision Snapshot:</strong> A full category-wise diagnostic analysis appears at the end.</div></div>
+        <div class="rule-item"><span class="rule-num">01.</span><div><strong>30 Questions:</strong> Covers all 8 fundamental parts of speech in English 1.</div></div>
+        <div class="rule-item"><span class="rule-num">02.</span><div><strong>Five Choices:</strong> Every question features five options (A, B, C, D, and E).</div></div>
+        <div class="rule-item"><span class="rule-num">03.</span><div><strong>One Mark:</strong> Exactly 1 mark is granted for each correct answer.</div></div>
+        <div class="rule-item"><span class="rule-num">04.</span><div><strong>30 Max Marks:</strong> Total possible revision aggregate is 30.</div></div>
+        <div class="rule-item"><span class="rule-num">05.</span><div><strong>30 Seconds:</strong> An individual countdown of 30 seconds is provided per question.</div></div>
+        <div class="rule-item"><span class="rule-num">06.</span><div><strong>Auto Lock:</strong> Expired timer marks the item as unanswered and reveals the key.</div></div>
+        <div class="rule-item"><span class="rule-num">07.</span><div><strong>No Negative Marks:</strong> Zero deduction for incorrect attempts.</div></div>
+        <div class="rule-item"><span class="rule-num">08.</span><div><strong>Single Selection:</strong> Once chosen, your answer cannot be altered.</div></div>
+        <div class="rule-item"><span class="rule-num">09.</span><div><strong>Grammar Guidance:</strong> Immediate contextual feedback is displayed after answering.</div></div>
+        <div class="rule-item"><span class="rule-num">10.</span><div><strong>Snapshot Analysis:</strong> Full category breakdown across all parts of speech upon completion.</div></div>
       </div>
 
       <div style="display:flex; align-items:center; gap:10px; margin: 12px 0; font-size:13px; color:var(--bright-gold);">
-        <input type="checkbox" id="rulesCheckbox" onchange="toggleRuleStartBtn()" style="accent-color:var(--cyan-glow); width:16px; height:16px; cursor:pointer;" />
+        <input type="checkbox" id="rulesCheckbox" onchange="toggleRuleStartBtn()" style="accent-color:var(--bright-gold); width:16px; height:16px; cursor:pointer;" />
         <label for="rulesCheckbox" style="cursor:pointer;">I have carefully read and understood the instructions.</label>
       </div>
 
@@ -834,25 +815,28 @@
 
     <!-- SCREEN 5: CHAPTER CARD -->
     <div id="screenChapterCard" class="sultan-card" style="display:none; text-align:center;">
-      <div class="badge-tag">Geographical Overview</div>
-      <div style="border: 1px solid var(--cyan-glow); padding:24px 16px; border-radius:14px; background:radial-gradient(circle, rgba(13,71,161,0.35) 0%, rgba(4,9,20,0.85) 100%);">
-        <h2 style="font-family:var(--font-title); font-size:15px; letter-spacing:3px; color:var(--text-muted); margin-bottom:8px;">CHAPTER 11</h2>
-        <h1 style="font-family:var(--font-title); font-size:32px; font-weight:900; color:var(--bright-gold); margin-bottom:10px;">THE OCEANS</h1>
-        <div style="font-family:var(--font-title); font-size:17px; color:#FFF; letter-spacing:2px;">
-          71% WATER <span style="color:var(--cyan-glow);">───────────</span> 29% LAND
+      <div class="badge-tag">Syllabus Overview</div>
+      <div style="border: 1px solid var(--antique-gold); padding:24px 16px; border-radius:14px; background:radial-gradient(circle, rgba(30,41,59,0.5) 0%, rgba(10,14,23,0.85) 100%);">
+        <h2 style="font-family:var(--font-title); font-size:15px; letter-spacing:3px; color:var(--text-muted); margin-bottom:8px;">ENGLISH LANGUAGE</h2>
+        <h1 style="font-family:var(--font-title); font-size:30px; font-weight:900; color:var(--bright-gold); margin-bottom:10px;">PARTS OF SPEECH</h1>
+        <div style="font-family:var(--font-title); font-size:16px; color:#FFF; letter-spacing:2px;">
+          8 CHAPTERS <span style="color:var(--antique-gold);">───────────</span> 30 QUESTIONS
         </div>
       </div>
 
       <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:20px 0;">
-        <span class="stats-pill">Pacific Ocean</span>
-        <span class="stats-pill">Atlantic Ocean</span>
-        <span class="stats-pill">Indian Ocean</span>
-        <span class="stats-pill">Southern Ocean</span>
-        <span class="stats-pill">Arctic Ocean</span>
+        <span class="stats-pill">Noun</span>
+        <span class="stats-pill">Pronoun</span>
+        <span class="stats-pill">Adjective</span>
+        <span class="stats-pill">Verb</span>
+        <span class="stats-pill">Adverb</span>
+        <span class="stats-pill">Preposition</span>
+        <span class="stats-pill">Conjunction</span>
+        <span class="stats-pill">Interjection</span>
       </div>
 
       <button class="btn-sultan" onclick="startQuizSession()">
-        ENTER REVISION SESSION <span>→</span>
+        ENTER QUESTIONNAIRE <span>→</span>
       </button>
 
       <div class="master-footer">
@@ -871,7 +855,7 @@
         <div class="stats-pill" id="scorePill">SCORE: 00</div>
       </div>
 
-      <!-- 30-Second Timer & Progress Bar -->
+      <!-- 30s Timer & Progress -->
       <div class="timer-wrap">
         <div class="timer-svg">
           <svg viewBox="0 0 64 64">
@@ -882,8 +866,8 @@
         </div>
         <div style="flex:1;">
           <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px; font-family:var(--font-title); color:var(--bright-gold);">
-            <span id="questionNumLabel">QUESTION 01 / 50</span>
-            <span id="pctProgressLabel">2%</span>
+            <span id="questionNumLabel">QUESTION 01 / 30</span>
+            <span id="pctProgressLabel">3%</span>
           </div>
           <div class="progress-bar-rail">
             <div class="progress-bar-fill" id="progressFill"></div>
@@ -891,22 +875,17 @@
         </div>
       </div>
 
-      <!-- Question & Category -->
+      <!-- Question Content -->
       <div class="question-category" id="qCategory">CATEGORY</div>
       <div class="question-text" id="qText">Question text appears here...</div>
 
-      <!-- Optional Image Illustration -->
-      <div class="q-image-box" id="qImageBox">
-        <img id="qImageTag" src="" alt="Geographical Diagram" onerror="this.parentElement.style.display='none';" />
-      </div>
-
-      <!-- 5 Options Container -->
+      <!-- 5 Options Grid -->
       <div class="options-grid" id="optionsContainer"></div>
 
-      <!-- AI Live Feedback Bubble -->
+      <!-- AI Speech Bubble Feedback -->
       <div class="ai-speech-bubble" id="aiSpeechBox">
         <div class="ai-speech-header">
-          <span>✦ AI REVISION ASSISTANT</span>
+          <span>✦ GRAMMAR AI ASSISTANT</span>
         </div>
         <div class="ai-speech-msg" id="aiSpeechText"></div>
       </div>
@@ -923,15 +902,15 @@
     <!-- SCREEN 7: ANALYZING LOADER -->
     <div id="screenAnalyzing" class="sultan-card" style="display:none; text-align:center; padding:48px 24px;">
       <div class="ai-orb-wrap" style="width:90px; height:90px;">
-        <div class="ai-orb" style="width:64px; height:64px; background:radial-gradient(circle, #fff, var(--bright-gold) 40%, var(--ocean-deep) 90%);">
-          <div class="ai-orb-ring" style="inset:-12px; border-color:var(--cyan-glow);"></div>
+        <div class="ai-orb" style="width:64px; height:64px; background:radial-gradient(circle, #fff, var(--bright-gold) 40%, var(--deep-navy) 90%);">
+          <div class="ai-orb-ring" style="inset:-12px; border-color:var(--ai-cyan);"></div>
         </div>
       </div>
       <h2 style="font-family:var(--font-title); color:var(--bright-gold); margin:18px 0 6px 0; font-size:20px;">
-        ANALYSING YOUR GEOGRAPHY REVISION...
+        ANALYSING GRAMMAR ACCURACY...
       </h2>
       <p style="font-size:13.5px; color:var(--text-muted);">
-        Evaluating oceanic relief concepts, salinity calculations, and major ocean metrics...
+        Evaluating syntactic patterns, rules of agreement, and parts of speech mastery...
       </p>
       <div class="master-footer" style="margin-top:28px;">
         <strong>MADE BY ABHISEK SIR</strong>
@@ -940,15 +919,15 @@
 
     <!-- SCREEN 8: FINAL RESULTS & DIAGNOSTICS -->
     <div id="screenResult" class="sultan-card" style="display:none; text-align:center;">
-      <div class="badge-tag">Evaluation Finalized</div>
+      <div class="badge-tag">Revision Finalized</div>
       <h1 class="title-main" style="font-size:26px;">REVISION COMPLETE</h1>
       <p class="subtitle-main" id="resultGreeting">Well done, Student!</p>
 
-      <!-- Circular Score Ring -->
+      <!-- Circular Score Chart -->
       <div class="score-circle-wrap">
         <svg class="score-circle-svg" viewBox="0 0 100 100">
           <circle cx="50" cy="50" r="40" stroke="rgba(255,255,255,0.08)"></circle>
-          <circle id="finalScoreCircle" cx="50" cy="50" r="40" stroke="var(--cyan-glow)" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="251.2" style="transition: stroke-dashoffset 1.4s ease-out;"></circle>
+          <circle id="finalScoreCircle" cx="50" cy="50" r="40" stroke="var(--bright-gold)" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="251.2" style="transition: stroke-dashoffset 1.4s ease-out;"></circle>
         </svg>
         <div class="score-text-inner">
           <span class="big-num" id="finalScoreNum">00</span>
@@ -958,12 +937,12 @@
 
       <!-- Stat Badges -->
       <div class="stat-badge-row">
-        <div class="stat-badge" style="border-color: rgba(46,196,182,0.4);">
-          <div class="val" style="color:var(--seafoam-green);" id="statCorrect">0</div>
+        <div class="stat-badge" style="border-color: rgba(16,185,129,0.4);">
+          <div class="val" style="color:var(--success-green);" id="statCorrect">0</div>
           <div class="lbl">CORRECT</div>
         </div>
-        <div class="stat-badge" style="border-color: rgba(230,57,70,0.4);">
-          <div class="val" style="color:var(--coral-accent);" id="statWrong">0</div>
+        <div class="stat-badge" style="border-color: rgba(239,68,68,0.4);">
+          <div class="val" style="color:var(--danger-red);" id="statWrong">0</div>
           <div class="lbl">INCORRECT</div>
         </div>
         <div class="stat-badge" style="border-color: rgba(212,168,79,0.4);">
@@ -972,23 +951,23 @@
         </div>
       </div>
 
-      <!-- AI Evaluation Feedback -->
-      <div style="background:rgba(8,21,43,0.6); border:1px solid rgba(0,240,255,0.3); border-radius:12px; padding:16px; margin:16px 0; text-align:left;">
+      <!-- AI Summary Commentary -->
+      <div style="background:rgba(15,23,42,0.6); border:1px solid rgba(212,168,79,0.3); border-radius:12px; padding:16px; margin:16px 0; text-align:left;">
         <div style="font-family:var(--font-title); font-size:11.5px; color:var(--bright-gold); letter-spacing:1px; margin-bottom:6px;">
           ✦ AI DIAGNOSTIC REPORT
         </div>
-        <div id="aiSummaryEvaluation" style="font-size:13.5px; color:#E3EFFB; line-height:1.55;"></div>
+        <div id="aiSummaryEvaluation" style="font-size:13.5px; color:#E2E8F0; line-height:1.55;"></div>
       </div>
 
-      <!-- Category Mastery Breakdown -->
+      <!-- Topic Performance Breakdown -->
       <div class="category-breakdown">
         <div style="font-family:var(--font-title); font-size:12px; color:var(--bright-gold); letter-spacing:1px; margin-bottom:12px;">
-          YOUR REVISION SNAPSHOT
+          YOUR GRAMMAR SNAPSHOT
         </div>
         <div id="categoryBarsContainer"></div>
       </div>
 
-      <!-- Retry Buttons -->
+      <!-- Action Buttons -->
       <div style="display:flex; flex-direction:column; gap:8px;">
         <button class="btn-sultan" onclick="restartEntireQuiz()">
           RETRY FULL QUIZ <span>↺</span>
@@ -999,7 +978,7 @@
       </div>
 
       <div class="master-footer">
-        GEOGRAPHY AI REVISION SYSTEM
+        ENGLISH GRAMMAR REVISION SYSTEM
         <strong>MADE BY ABHISEK SIR</strong>
       </div>
     </div>
@@ -1069,482 +1048,248 @@
     };
 
     /* ==============================================================
-       2. COMPLETE 50-QUESTION DATABASE: CHAPTER 11 - THE OCEANS
+       2. COMPLETE 30-QUESTION DATABASE: ENGLISH 1 (PARTS OF SPEECH)
     ============================================================== */
     const QUESTION_BANK = [
       {
-        q: "Why is the Earth often referred to as the 'Watery Planet' or 'Blue Planet'?",
-        opts: [
-          "It has frozen ice caps on both poles",
-          "It is the only planet in the solar system to have water in abundance",
-          "Its core is composed of liquid water",
-          "Atmospheric clouds conceal all dry land from space",
-          "None of the above"
-        ],
-        ans: 1,
-        cat: "Hydrosphere & Drift",
-        exp: "The Earth is the only planet in our solar system with liquid water in abundance, making life possible.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/320px-The_Earth_seen_from_Apollo_17.jpg"
+        q: "Which of the following words is an example of an Abstract Noun?",
+        opts: ["Wisdom", "Bravery", "Childhood", "Honesty", "All of the above"],
+        ans: 4,
+        cat: "Nouns",
+        exp: "Abstract nouns denote qualities, states, or concepts that cannot be physically touched or seen."
       },
       {
-        q: "What is collectively included in the 'Hydrosphere'?",
+        q: "Identify the Collective Noun in: 'A pride of lions stalked across the open grasslands.'",
+        opts: ["pride", "lions", "grasslands", "stalked", "None of the above"],
+        ans: 0,
+        cat: "Nouns",
+        exp: "'Pride' is the specific collective noun applied to a group of lions."
+      },
+      {
+        q: "Which of the following sentences contains an Uncountable Noun?",
         opts: [
-          "Liquid water in sedimentary rocks, rivers, lakes, and oceans",
-          "Ice in the sea and continental ice sheets",
-          "Soil water and groundwater",
-          "Gaseous water vapour, liquid droplets, and ice crystals in the atmosphere",
+          "The teacher gave us valuable advice.",
+          "The wooden furniture was polished yesterday.",
+          "Fresh milk was delivered in the morning.",
+          "He quenched his thirst with cold water.",
           "All of the above"
         ],
         ans: 4,
-        cat: "Hydrosphere & Drift",
-        exp: "The hydrosphere comprises all surface water, subterranean water, ice caps, and atmospheric vapour."
+        cat: "Nouns",
+        exp: "'Advice', 'furniture', 'milk', and 'water' are all uncountable mass nouns."
       },
       {
-        q: "Through which mechanism are the Atmosphere, Hydrosphere, Lithosphere, and Biosphere interlinked?",
-        opts: ["Carbon cycle", "Plate tectonics", "Hydrological cycle", "Antipodal balance", "None of the above"],
-        ans: 2,
-        cat: "Hydrosphere & Drift",
-        exp: "The hydrological cycle continuously circulates water among the atmosphere, oceans, and land."
-      },
-      {
-        q: "What was the name of the supercontinent that existed about 225 million years ago?",
-        opts: ["Panthalassa", "Pangaea", "Gondwanaland", "Eurasia", "None of the above"],
-        ans: 1,
-        cat: "Hydrosphere & Drift",
-        exp: "About 225 million years ago, all continental masses were joined into a single supercontinent: Pangaea.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Pangaea_continents.png/320px-Pangaea_continents.png"
-      },
-      {
-        q: "What was the vast primeval ocean surrounding Pangaea called?",
-        opts: ["Tethys Sea", "Panthalassa", "Pacific Ocean", "Indian Ocean", "None of the above"],
-        ans: 1,
-        cat: "Hydrosphere & Drift",
-        exp: "The supercontinent Pangaea was surrounded by a single vast world ocean termed Panthalassa."
-      },
-      {
-        q: "Which ocean was formed as North and South America drifted westward from Pangaea?",
-        opts: ["Indian Ocean", "Arctic Ocean", "Atlantic Ocean", "Southern Ocean", "None of the above"],
-        ans: 2,
-        cat: "Hydrosphere & Drift",
-        exp: "The westward continental drift of the Americas split Pangaea and created the Atlantic Ocean."
-      },
-      {
-        q: "What proportions of the Earth's surface are covered by water and land?",
-        opts: ["60% water and 40% land", "71% water and 29% land", "75% water and 25% land", "80% water and 20% land", "None of the above"],
-        ans: 1,
-        cat: "Hydrosphere & Drift",
-        exp: "Oceans and seas occupy about 71% of Earth's surface, leaving 29% as land."
-      },
-      {
-        q: "According to ocean depth zones, in which oceanic zone is the Mariana Trench located?",
-        opts: ["Epipelagic zone", "Mesopelagic zone", "Bathypelagic zone", "Hadalpelagic zone", "Abyssopelagic zone"],
-        ans: 3,
-        cat: "Oceans & Relief",
-        exp: "The deepest ocean trenches (beyond 6,000 m) belong to the Hadalpelagic zone."
-      },
-      {
-        q: "What does the 'antipodal balance of land and water' mean?",
-        opts: [
-          "Land and water are distributed equally along the Equator",
-          "Land on one side of the globe is balanced by water on the directly opposite side",
-          "Continental shelves balance the weight of mid-ocean ridges",
-          "Evaporation in one hemisphere equals precipitation in the other",
-          "None of the above"
-        ],
-        ans: 1,
-        cat: "Hydrosphere & Drift",
-        exp: "Antipodal balance signifies that land on one point of the globe is balanced by water directly opposite."
-      },
-      {
-        q: "Which water body lies antipodal (directly opposite) to the continent of Antarctica?",
-        opts: ["North Polar Arctic Ocean", "North Pacific Ocean", "South Atlantic Ocean", "Indian Ocean", "None of the above"],
+        q: "In the sentence 'Platinum is a rare and precious metal,' what type of noun is 'Platinum'?",
+        opts: ["Material Noun", "Proper Noun", "Collective Noun", "Abstract Noun", "None of the above"],
         ans: 0,
-        cat: "Hydrosphere & Drift",
-        exp: "The North Polar Arctic Ocean is situated directly antipodal to the continent of Antarctica."
+        cat: "Nouns",
+        exp: "A material noun denotes a raw substance or matter from which things are manufactured."
       },
       {
-        q: "What rough geometric shape do both the continents and oceans display?",
-        opts: ["Hexagonal", "Circular", "Triangular", "Rectangular", "None of the above"],
+        q: "Identify the Reflexive Pronoun in: 'The young boy blamed himself for the broken window.'",
+        opts: ["boy", "window", "himself", "broken", "None of the above"],
         ans: 2,
-        cat: "Oceans & Relief",
-        exp: "Both landmasses and ocean basins display a generally triangular configuration."
+        cat: "Pronouns",
+        exp: "'Himself' reflects the action of the verb back onto the subject ('the young boy')."
       },
       {
-        q: "Which continents are exceptions to the triangular shape with wide northern bases?",
-        opts: ["North America and Europe", "Africa and South America", "Australia and Antarctica", "Asia and Europe", "None of the above"],
-        ans: 2,
-        cat: "Oceans & Relief",
-        exp: "Continents generally taper southward from wide northern bases, except for Australia and Antarctica."
-      },
-      {
-        q: "In the Southern Hemisphere, how does the extent of water compare to land?",
+        q: "Which of the following sentences correctly demonstrates an Emphatic (Intensive) Pronoun?",
         opts: [
-          "Land and water are nearly equal",
-          "Water is twice as extensive as land",
-          "Water is nearly 15 times as much as land",
-          "Land is 5 times greater than water",
+          "The principal herself addressed the assembly.",
+          "I myself unlocked the front gate.",
+          "They admitted their mistake themselves.",
+          "The chef himself cooked the signature dessert.",
+          "All of the above"
+        ],
+        ans: 4,
+        cat: "Pronouns",
+        exp: "Emphatic pronouns are positioned to add emphasis to a noun or pronoun without serving as objects."
+      },
+      {
+        q: "In 'This is the surgeon who performed the emergency operation,' what type of pronoun is 'who'?",
+        opts: ["Relative Pronoun", "Demonstrative Pronoun", "Interrogative Pronoun", "Distributive Pronoun", "None of the above"],
+        ans: 0,
+        cat: "Pronouns",
+        exp: "'Who' functions as a relative pronoun connecting the subordinate clause to the antecedent 'surgeon'."
+      },
+      {
+        q: "Which of the following words functions as an Indefinite Pronoun?",
+        opts: ["Somebody", "Anyone", "Nobody", "Everyone", "All of the above"],
+        ans: 4,
+        cat: "Pronouns",
+        exp: "Indefinite pronouns refer to persons or things in a general, non-specific manner."
+      },
+      {
+        q: "Identify the Adjective of Quality in: 'The ancient castle overlooked a stormy sea.'",
+        opts: ["ancient", "castle", "overlooked", "sea", "None of the above"],
+        ans: 0,
+        cat: "Adjectives",
+        exp: "'Ancient' (along with 'stormy') describes the characteristic quality or condition of the noun."
+      },
+      {
+        q: "In 'He showed little concern for the severe warnings,' what kind of adjective is 'little'?",
+        opts: ["Adjective of Quantity", "Adjective of Number", "Demonstrative Adjective", "Proper Adjective", "None of the above"],
+        ans: 0,
+        cat: "Adjectives",
+        exp: "'Little' describes the quantity of the uncountable noun 'concern'."
+      },
+      {
+        q: "Which of the following is the correct Comparative Degree form of the adjective 'good'?",
+        opts: ["Better", "Gooder", "More good", "Best", "None of the above"],
+        ans: 0,
+        cat: "Adjectives",
+        exp: "'Good' changes irregularly: positive (good), comparative (better), superlative (best)."
+      },
+      {
+        q: "Which of the following sentences contains a Demonstrative Adjective?",
+        opts: [
+          "This book contains rare illustrations.",
+          "That monument was built centuries ago.",
+          "These apples are fresh and sweet.",
+          "Those mountains are covered in deep snow.",
+          "All of the above"
+        ],
+        ans: 4,
+        cat: "Adjectives",
+        exp: "'This', 'That', 'These', and 'Those' immediately precede and modify nouns as demonstrative adjectives."
+      },
+      {
+        q: "Identify the sentence that contains a Transitive Verb:",
+        opts: [
+          "The batsman hit the ball over the boundary.",
+          "The river flows smoothly into the sea.",
+          "The baby cried until morning.",
+          "The dark clouds disappeared gradually.",
           "None of the above"
         ],
-        ans: 2,
-        cat: "Oceans & Relief",
-        exp: "In the Southern Hemisphere, the surface area of water is nearly 15 times greater than that of land."
+        ans: 0,
+        cat: "Verbs",
+        exp: "'Hit' takes a direct object ('the ball') to complete its action, making it a transitive verb."
       },
       {
-        q: "What keeps Antarctica geographically isolated from the other continents?",
+        q: "In 'Swimming is an excellent full-body exercise,' what is the grammatical function of 'Swimming'?",
+        opts: ["Gerund (Verbal Noun)", "Infinitive", "Present Participle acting as Adjective", "Finite Verb", "None of the above"],
+        ans: 0,
+        cat: "Verbs",
+        exp: "A verb form ending in -ing acting as a noun (the subject of 'is') is classified as a Gerund."
+      },
+      {
+        q: "Which of the following verbs is inherently an Intransitive Verb?",
+        opts: ["Sleep", "Arrive", "Sneezed", "Vanish", "All of the above"],
+        ans: 4,
+        cat: "Verbs",
+        exp: "Intransitive verbs do not take direct objects (one cannot 'arrive something' or 'sleep something')."
+      },
+      {
+        q: "Identify the Modal Auxiliary Verb in: 'Students must wear formal uniforms on Mondays.'",
+        opts: ["must", "wear", "formal", "Mondays", "None of the above"],
+        ans: 0,
+        cat: "Verbs",
+        exp: "'Must' is a modal auxiliary verb that conveys necessity or mandatory obligation."
+      },
+      {
+        q: "In 'She explained the concept thoroughly,' what type of adverb is 'thoroughly'?",
+        opts: ["Adverb of Manner", "Adverb of Place", "Adverb of Time", "Adverb of Frequency", "None of the above"],
+        ans: 0,
+        cat: "Adverbs",
+        exp: "'Thoroughly' describes 'how' or the manner in which the verb 'explained' was performed."
+      },
+      {
+        q: "Which of the following words functions as an Adverb of Frequency?",
+        opts: ["Seldom", "Frequently", "Never", "Always", "All of the above"],
+        ans: 4,
+        cat: "Adverbs",
+        exp: "Adverbs of frequency indicate how often an action occurs."
+      },
+      {
+        q: "Identify the Adverb of Degree in: 'The weather was extremely cold during our expedition.'",
+        opts: ["extremely", "cold", "during", "expedition", "None of the above"],
+        ans: 0,
+        cat: "Adverbs",
+        exp: "'Extremely' modifies the adjective 'cold', specifying intensity or degree."
+      },
+      {
+        q: "In 'The scouts searched everywhere for the missing map,' what kind of adverb is 'everywhere'?",
+        opts: ["Adverb of Place", "Adverb of Manner", "Adverb of Time", "Adverb of Degree", "None of the above"],
+        ans: 0,
+        cat: "Adverbs",
+        exp: "'Everywhere' specifies the location where the action occurred, answering 'where'."
+      },
+      {
+        q: "Fill in the blank with the appropriate preposition of time: 'The family has lived in this town _____ 2012.'",
+        opts: ["since", "for", "in", "by", "None of the above"],
+        ans: 0,
+        cat: "Prepositions",
+        exp: "'Since' denotes a specific point in time with the Present Perfect Tense."
+      },
+      {
+        q: "Which of the following sentences uses the preposition 'between' correctly?",
         opts: [
-          "The Ural mountain belt",
-          "The Southern Ocean gap formed between Antarctica and southern continental edges",
-          "The Pacific Ring of Fire",
-          "The Mariana Trench",
-          "None of the above"
+          "The inheritance was divided equally between the two brothers.",
+          "A treaty was signed between the two neighboring countries.",
+          "She sat quietly between her mother and father.",
+          "The secret must remain strictly between you and me.",
+          "All of the above"
         ],
-        ans: 1,
-        cat: "Major Oceans",
-        exp: "The continuous water ring of the Southern Ocean completely encircles and isolates Antarctica."
+        ans: 4,
+        cat: "Prepositions",
+        exp: "'Between' is appropriately used when referencing two individual persons, entities, or parties."
       },
       {
-        q: "Antarctica has three prominent protruding areas extending towards:",
-        opts: ["South America", "Southern Africa", "Australia", "All of the above", "None of the above"],
-        ans: 3,
-        cat: "Major Oceans",
-        exp: "Antarctica's land projections reach towards South America, Southern Africa, and Australia."
+        q: "Complete the sentence with the appropriate preposition: 'The soldier was accused _____ treason.'",
+        opts: ["of", "with", "for", "about", "None of the above"],
+        ans: 0,
+        cat: "Prepositions",
+        exp: "The verb 'accuse' is idiomatically followed by the preposition 'of' (accused of a crime)."
       },
       {
-        q: "What is the scientific study of oceanic phenomena called?",
-        opts: ["Hydrology", "Oceanography", "Geomorphology", "Meteorology", "None of the above"],
-        ans: 1,
-        cat: "Ocean Properties",
-        exp: "Oceanography is the scientific exploration and systematic study of oceanic phenomena."
+        q: "Which of the following words can function as a Preposition indicating spatial position?",
+        opts: ["Beneath", "Beside", "Under", "Across", "All of the above"],
+        ans: 4,
+        cat: "Prepositions",
+        exp: "All four words express physical placement and spatial relationships between nouns."
       },
       {
-        q: "Which list shows the five oceans in correct descending order of their size?",
-        opts: [
-          "Atlantic, Pacific, Indian, Southern, Arctic",
-          "Pacific, Indian, Atlantic, Southern, Arctic",
-          "Pacific, Atlantic, Indian, Southern, Arctic",
-          "Pacific, Atlantic, Southern, Indian, Arctic",
-          "None of the above"
-        ],
-        ans: 2,
-        cat: "Major Oceans",
-        exp: "In decreasing size: Pacific Ocean > Atlantic Ocean > Indian Ocean > Southern Ocean > Arctic Ocean."
+        q: "In 'Neither the manager nor the employees were informed,' what kind of conjunction is 'Neither... nor'?",
+        opts: ["Correlative Conjunction", "Subordinating Conjunction", "Coordinating Conjunction", "Adversative Conjunction", "None of the above"],
+        ans: 0,
+        cat: "Conjunctions",
+        exp: "Correlative conjunctions function as connected pairs joining elements of equivalent structure."
       },
       {
-        q: "Why do coastal areas experience a maritime climate rather than extreme temperatures?",
-        opts: [
-          "Ocean currents always blow freezing cold water to coasts",
-          "Oceans store up heat and distribute it, moderating high summer and low winter temperatures",
-          "Coastal areas have higher elevation above sea level",
-          "Offshore winds prevent any clouds from forming",
-          "None of the above"
-        ],
-        ans: 1,
-        cat: "Ocean Properties",
-        exp: "Oceans absorb solar heat and circulate it, moderating summer heat and winter cold."
+        q: "Which of the following is a Coordinating Conjunction?",
+        opts: ["For", "And", "Nor", "But", "All of the above"],
+        ans: 4,
+        cat: "Conjunctions",
+        exp: "The seven coordinating conjunctions are captured by the acronym FANBOYS (For, And, Nor, But, Or, Yet, So)."
       },
       {
-        q: "How do ocean currents modify coastal climate?",
-        opts: [
-          "Warm ocean currents increase both temperature and humidity",
-          "Cold ocean currents decrease the temperature of adjacent coastal areas",
-          "They stabilize global barometric pressure permanently",
-          "Both A and B",
-          "None of the above"
-        ],
-        ans: 3,
-        cat: "Ocean Properties",
-        exp: "Warm currents raise warmth and precipitation, whereas cold currents chill coastal zones."
+        q: "Identify the Subordinating Conjunction in: 'We remained inside the hall until the storm had passed.'",
+        opts: ["until", "inside", "remained", "had passed", "None of the above"],
+        ans: 0,
+        cat: "Conjunctions",
+        exp: "'Until' connects the dependent time clause to the principal clause."
       },
       {
-        q: "Which of the following is an important international trade and travel route mentioned in the chapter?",
-        opts: ["Suez Canal route", "Panama Canal route", "North Atlantic route", "All of the above", "None of the above"],
-        ans: 3,
-        cat: "Marine Resources",
-        exp: "The oceans provide low-cost transit across key arterial routes like Suez, Panama, and North Atlantic routes."
+        q: "Choose the correct conjunction to fill in the blank: 'Walk carefully _____ you should slip on the wet floor.'",
+        opts: ["lest", "otherwise", "unless", "because", "None of the above"],
+        ans: 0,
+        cat: "Conjunctions",
+        exp: "'Lest' means 'for fear that' and is idiomatically paired with the modal verb 'should'."
       },
       {
-        q: "Which offshore oil-producing region in India is located in the Arabian Sea?",
-        opts: ["Digboi", "Mumbai High", "Narimanam", "Ankleshwar", "None of the above"],
-        ans: 1,
-        cat: "Marine Resources",
-        exp: "Mumbai High is India's principal offshore petroleum and natural gas field in the Arabian Sea."
+        q: "What specific emotion does the interjection 'Alas!' traditionally express in English literature?",
+        opts: ["Grief, sorrow, or regret", "Sudden excitement and victory", "Surprise and wonder", "Contempt and disgust", "None of the above"],
+        ans: 0,
+        cat: "Interjections",
+        exp: "'Alas!' is an emotive exclamation expressing sorrow, distress, or regret."
       },
       {
-        q: "Why are shallow continental shelves the largest source of commercial fish?",
-        opts: [
-          "Cold ocean currents freeze fish into large clusters",
-          "Sunlight can penetrate, creating ideal conditions for fish reproduction and growth",
-          "Marine trenches trap predatory mammals",
-          "Salinity is 0% over continental shelves",
-          "None of the above"
-        ],
-        ans: 1,
-        cat: "Marine Resources",
-        exp: "Sunlight penetrates shallow continental shelves, supporting plankton, fish feeding, and breeding."
-      },
-      {
-        q: "What primary force causes the alternate rising and falling of sea levels used to generate tidal energy?",
-        opts: [
-          "Undersea seismic faulting",
-          "Gravitational attraction of the Sun and the Moon",
-          "The Coriolis force",
-          "Coastal trade winds",
-          "None of the above"
-        ],
-        ans: 1,
-        cat: "Marine Resources",
-        exp: "Tides are generated by the gravitational pull exerted by the Moon and the Sun upon the Earth's waters."
-      },
-      {
-        q: "Which of the following nations produce electricity from tidal energy?",
-        opts: ["Russia", "France", "Japan", "All of the above", "None of the above"],
-        ans: 3,
-        cat: "Marine Resources",
-        exp: "Russia, France, and Japan have operational tidal power plants producing clean energy."
-      },
-      {
-        q: "In which regions of India is tidal energy produced or harnessed?",
-        opts: [
-          "Gulf of Mannar and Palk Strait",
-          "Gulf of Khambhat and Gulf of Kuchchh",
-          "Chilika Lake and Pulicat Lake",
-          "Coromandel Coast and Malabar Coast",
-          "None of the above"
-        ],
-        ans: 1,
-        cat: "Marine Resources",
-        exp: "India's highest tidal range potentials exist in the Gulf of Khambhat and the Gulf of Kuchchh."
-      },
-      {
-        q: "How can electricity be produced using ocean thermal energy?",
-        opts: [
-          "By extracting latent heat from drifting polar icebergs",
-          "By utilizing the difference in temperature between surface water and sub-surface water",
-          "By accelerating currents through volcanic hydrothermal vents",
-          "By boiling ocean salt crystals directly in floating ovens",
-          "None of the above"
-        ],
-        ans: 1,
-        cat: "Marine Resources",
-        exp: "Ocean Thermal Energy Conversion (OTEC) exploits the thermal gradient between warm surface and cold deep water."
-      },
-      {
-        q: "What is the typical horizontal temperature of ocean surface water in the tropical zone?",
-        opts: ["Between 10°C and 15°C", "Between 18°C and 20°C", "Between 23°C and 27°C", "Between 35°C and 40°C", "None of the above"],
-        ans: 2,
-        cat: "Ocean Properties",
-        exp: "Tropical ocean surface waters typically average warm temperatures between 23°C and 27°C."
-      },
-      {
-        q: "What is the approximate surface temperature of ocean water near the poles?",
-        opts: ["-10.5°C", "0°C", "About 2.2°C", "7.8°C", "None of the above"],
-        ans: 2,
-        cat: "Ocean Properties",
-        exp: "Ocean temperatures decrease towards polar waters, dropping to approximately 2.2°C."
-      },
-      {
-        q: "A 'fathom' is a nautical unit of depth equal to:",
-        opts: ["3 feet (0.914 m)", "6 feet (1.829 m)", "10 feet (3.048 m)", "12 feet (3.658 m)", "None of the above"],
-        ans: 1,
-        cat: "Ocean Properties",
-        exp: "One fathom represents the span of outstretched human arms, standardized to 6 feet (1.829 metres)."
-      },
-      {
-        q: "In nautical measurement, how many fathoms are equal to 1 cable?",
-        opts: ["50 fathoms", "100 fathoms", "200 fathoms", "500 fathoms", "None of the above"],
-        ans: 1,
-        cat: "Ocean Properties",
-        exp: "In the English nautical measurement system, 100 fathoms make up 1 cable."
-      },
-      {
-        q: "What is an 'isobath'?",
-        opts: [
-          "A line on a map joining points of equal water temperature",
-          "A line on a map joining points of equal atmospheric pressure",
-          "A line on a map joining points of equal oceanic depth",
-          "A line on a map joining points of equal salinity",
-          "None of the above"
-        ],
-        ans: 2,
-        cat: "Oceans & Relief",
-        exp: "An isobath is a contour line joining points of equal depth below sea level."
-      },
-      {
-        q: "What is an 'isohaline'?",
-        opts: [
-          "A line joining points of equal ocean depth",
-          "A line joining points of equal water salinity",
-          "A line connecting equal wave heights",
-          "A line connecting equal tidal ranges",
-          "None of the above"
-        ],
-        ans: 1,
-        cat: "Ocean Properties",
-        exp: "An isohaline connects places with equal salinity across marine water bodies."
-      },
-      {
-        q: "What is the average salinity of ocean water per 1,000 grams of water?",
-        opts: ["15 grams", "25 grams", "About 35 grams (35‰)", "77 grams", "None of the above"],
-        ans: 2,
-        cat: "Ocean Properties",
-        exp: "Standard seawater contains roughly 35 grams of dissolved salts per 1,000 grams of water (35‰)."
-      },
-      {
-        q: "Which mineral salt constitutes more than 77% of all dissolved salts in seawater?",
-        opts: ["Magnesium chloride", "Calcium sulphate", "Sodium chloride (common salt)", "Potassium nitrate", "None of the above"],
-        ans: 2,
-        cat: "Ocean Properties",
-        exp: "Sodium chloride (NaCl) is the predominant mineral salt, accounting for over 77% of total salinity."
-      },
-      {
-        q: "Why do landlocked or partially enclosed seas usually have higher salinity than open oceans?",
-        opts: [
-          "They receive zero river discharge",
-          "Higher rates of evaporation combined with less mixing with open seas",
-          "Undersea volcanoes constantly erupt inside them",
-          "Salt is extracted mechanically by surrounding industries",
-          "None of the above"
-        ],
-        ans: 1,
-        cat: "Ocean Properties",
-        exp: "Enclosed water bodies undergo rapid evaporation while lacking free flushing and dilution from open oceans."
-      },
-      {
-        q: "Which water body has an exceptionally high salinity of 330% (330‰) according to the chapter?",
-        opts: ["Baltic Sea", "Red Sea", "Lake Van in Asia Minor", "Caspian Sea", "None of the above"],
-        ans: 2,
-        cat: "Ocean Properties",
-        exp: "Lake Van in Asia Minor is extremely hypersaline, with salinity reaching 330‰."
-      },
-      {
-        q: "Why is it impossible for a human to drown or dive easily in the Dead Sea?",
-        opts: [
-          "Dense floating seaweed mats block submersion",
-          "The high salinity (250%) results in extremely high water density that forces the body to float",
-          "Strong upward geothermal geysers keep swimmers at the surface",
-          "Powerful surface currents carry swimmers onto the shore",
-          "None of the above"
-        ],
-        ans: 1,
-        cat: "Ocean Properties",
-        exp: "With ~250‰ salinity, the Dead Sea's elevated water density exceeds human body density, keeping swimmers buoyant."
-      },
-      {
-        q: "What fraction of the Earth's total surface area is covered by the Pacific Ocean?",
-        opts: ["One-fourth", "One-third", "One-half", "One-sixth", "None of the above"],
-        ans: 1,
-        cat: "Major Oceans",
-        exp: "The Pacific Ocean covers approximately one-third of the total surface area of the globe."
-      },
-      {
-        q: "What is the average depth of the Pacific Ocean?",
-        opts: ["3,500 m", "4,000 m", "4,200 m", "5,100 m", "None of the above"],
-        ans: 2,
-        cat: "Major Oceans",
-        exp: "The Pacific is both the largest and the deepest ocean, having an average depth of 4,200 metres."
-      },
-      {
-        q: "Where is the northern vertex of the roughly triangular Pacific Ocean located?",
-        opts: ["Strait of Malacca", "Cape of Good Hope", "Bering Strait", "Cape Horn", "None of the above"],
-        ans: 2,
-        cat: "Major Oceans",
-        exp: "The Pacific Ocean narrows northward to a vertex situated at the Bering Strait."
-      },
-      {
-        q: "What are the east-west and north-south extents of the Pacific Ocean?",
-        opts: [
-          "10,000 km east-west and 8,000 km north-south",
-          "12,000 km east-west and 10,000 km north-south",
-          "16,000 km east-west and 15,000 km north-south",
-          "20,000 km east-west and 18,000 km north-south",
-          "None of the above"
-        ],
-        ans: 2,
-        cat: "Major Oceans",
-        exp: "The Pacific spans roughly 16,000 km from east to west and 15,000 km from north to south."
-      },
-      {
-        q: "Why are the continental shelves narrow along the Pacific coasts of North and South America?",
-        opts: [
-          "Heavy coral reef formation prevents shelf extension",
-          "The presence of the Rocky and Andes Mountain chains near the coastline",
-          "Strong equatorial currents erode coastal sediments",
-          "Constant deep-sea mining along the coast",
-          "None of the above"
-        ],
-        ans: 1,
-        cat: "Oceans & Relief",
-        exp: "Steep coastal mountain barriers (the Rockies and Andes) directly border the coastline, resulting in narrow shelves."
-      },
-      {
-        q: "What is the deepest known trench in the world, and what is its approximate depth?",
-        opts: [
-          "Puerto Rico Trench (~8,385 m)",
-          "Sunda Trench (~7,450 m)",
-          "Mariana Trench (~10,800 m)",
-          "Philippine Trench (~10,380 m)",
-          "None of the above"
-        ],
-        ans: 2,
-        cat: "Oceans & Relief",
-        exp: "The Mariana Trench (Challenger Deep) plunges to roughly 10,800 metres below sea level.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Mariana_Trench.png/320px-Mariana_Trench.png"
-      },
-      {
-        q: "Who named the 'Pacific Ocean', and what does the word signify?",
-        opts: [
-          "Christopher Columbus; meaning 'vast waters'",
-          "Ferdinand Magellan; meaning 'calm or peaceful'",
-          "James Cook; meaning 'endless horizon'",
-          "Amerigo Vespucci; meaning 'southern deep'",
-          "None of the above"
-        ],
-        ans: 1,
-        cat: "Major Oceans",
-        exp: "Ferdinand Magellan named it 'Pacific' because of the calm seas he encountered upon entering it."
-      },
-      {
-        q: "Due to plate tectonic motion, by how much is the Atlantic Ocean widening each year?",
-        opts: ["1 mm each year", "1 cm each year", "5 cm each year", "10 cm each year", "None of the above"],
-        ans: 1,
-        cat: "Major Oceans",
-        exp: "Seafloor spreading along the Mid-Atlantic Ridge causes the Atlantic Ocean to widen by about 1 cm annually."
-      },
-      {
-        q: "What distinctive shape does the Atlantic Ocean resemble on a world map?",
-        opts: ["Letter 'C'", "Letter 'V'", "Letter 'S'", "Letter 'O'", "None of the above"],
-        ans: 2,
-        cat: "Major Oceans",
-        exp: "The Atlantic Ocean curves in an elongated, S-shaped basin between the Americas, Europe, and Africa."
-      },
-      {
-        q: "What is the 15,000 km long submarine mountain chain running through the Atlantic Ocean called?",
-        opts: ["Carlsberg Ridge", "Mid-Atlantic Ridge", "East Pacific Rise", "Mid-Indian Oceanic Ridge", "None of the above"],
-        ans: 1,
-        cat: "Oceans & Relief",
-        exp: "The Mid-Atlantic Ridge is a 15,000 km long undersea mountain range splitting the Atlantic basin.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Atlantic_bathymetry.jpg/320px-Atlantic_bathymetry.jpg"
-      },
-      {
-        q: "The Mid-Atlantic Ridge is known as Dolphin Rise in the north and what in the south?",
-        opts: ["Romanche Rise", "Challenger Rise", "South Sandwich Rise", "Puerto Rico Rise", "None of the above"],
-        ans: 1,
-        cat: "Oceans & Relief",
-        exp: "The Mid-Atlantic Ridge is divided into Dolphin Rise north of the Equator and Challenger Rise in the south."
-      },
-      {
-        q: "Which is the deepest trench in the Indian Ocean, measuring about 7,450 m in depth?",
-        opts: ["Mariana Trench", "Sunda Trench", "Romanche Trench", "South Sandwich Trench", "None of the above"],
-        ans: 1,
-        cat: "Oceans & Relief",
-        exp: "The Sunda (Java) Trench is the deepest known trench in the Indian Ocean at about 7,450 metres."
-      },
-      {
-        q: "In which year was the Southern Ocean officially recognized as a new ocean by the International Hydrographic Organisation (IHO)?",
-        opts: ["A.D. 1950", "A.D. 1982", "A.D. 2000", "A.D. 2015", "None of the above"],
-        ans: 2,
-        cat: "Major Oceans",
-        exp: "The International Hydrographic Organisation (IHO) officially designated the Southern Ocean in A.D. 2000."
+        q: "Which of the following interjections expresses approval, praise, or encouragement?",
+        opts: ["Bravo!", "Well done!", "Kudos!", "Hear, hear!", "All of the above"],
+        ans: 4,
+        cat: "Interjections",
+        exp: "All of these interjections convey congratulations, applause, or commendation."
       }
     ];
 
@@ -1585,7 +1330,7 @@
       const val = input.value.trim();
       if (!val) {
         input.focus();
-        input.style.borderColor = "var(--coral-accent)";
+        input.style.borderColor = "var(--danger-red)";
         return;
       }
       State.studentName = val;
@@ -1599,7 +1344,7 @@
     }
 
     function runTypewriterEffect() {
-      const txt = `“Welcome to your Chapter 11 (The Oceans) revision session. I will guide you through 50 examination questions covering ocean relief, antipodal balance, salinity, currents, and ocean basins. Each question carries 1 mark and you have 30 seconds to answer. Ready, ${State.studentName}?”`;
+      const txt = `“Welcome to your English 1 Parts of Speech revision session. I will guide you through 30 essential questions covering Nouns, Pronouns, Adjectives, Verbs, Adverbs, Prepositions, Conjunctions, and Interjections. Each question carries 1 mark and you have 30 seconds to answer. Ready, ${State.studentName}?”`;
       const target = document.getElementById('typewriterText');
       const btn = document.getElementById('introNextBtn');
       target.textContent = "";
@@ -1651,7 +1396,7 @@
     function renderCurrentQuestion() {
       clearInterval(State.timerInterval);
       State.isAnswerLocked = false;
-      State.timerSec = 30; // Reset to 30s
+      State.timerSec = 30; // 30-second timer reset
 
       const q = State.currentQuizSet[State.currentIndex];
       const total = State.currentQuizSet.length;
@@ -1665,17 +1410,6 @@
       const pct = Math.round((qNum / total) * 100);
       document.getElementById('pctProgressLabel').textContent = `${pct}%`;
       document.getElementById('progressFill').style.width = `${pct}%`;
-
-      // Handle Optional Diagram/Image
-      const imgBox = document.getElementById('qImageBox');
-      const imgTag = document.getElementById('qImageTag');
-      if (q.img) {
-        imgTag.src = q.img;
-        imgBox.style.display = 'block';
-      } else {
-        imgBox.style.display = 'none';
-        imgTag.src = '';
-      }
 
       document.getElementById('nextQuestionBtn').style.display = 'none';
       document.getElementById('aiSpeechBox').style.display = 'none';
@@ -1723,8 +1457,7 @@
       const label = document.getElementById('timerLabel');
       label.textContent = State.timerSec;
 
-      // Circumference for r=25 is 2 * PI * 25 ≈ 157
-      // 30 seconds calculation
+      // 30 seconds calculation for r=25 (circumference ≈ 157)
       const offset = 157 - (157 * State.timerSec) / 30;
       circle.style.strokeDashoffset = offset;
 
@@ -1755,7 +1488,7 @@
         State.correctCount++;
         State.categoryStats[q.cat].correct++;
 
-        speechText.innerHTML = `<strong>Splendid, ${State.studentName}!</strong> Correct answer (+1 mark).<br><span style="color:#C6DBEF; font-size:12.5px; margin-top:3px; display:inline-block;">${q.exp}</span>`;
+        speechText.innerHTML = `<strong>Splendid, ${State.studentName}!</strong> Correct grammatical choice (+1 mark).<br><span style="color:#CBD5E1; font-size:12.5px; margin-top:3px; display:inline-block;">${q.exp}</span>`;
       } else {
         AudioEngine.playWrong();
         document.getElementById(`optBtn_${selectedIdx}`).classList.add('selected-wrong');
@@ -1764,7 +1497,7 @@
         State.missedQuestions.push(q);
 
         const letters = ['A', 'B', 'C', 'D', 'E'];
-        speechText.innerHTML = `<strong>Not quite, ${State.studentName}.</strong> The correct answer is <strong>${letters[correctIdx]}: ${q.opts[correctIdx]}</strong>.<br><span style="color:#C6DBEF; font-size:12.5px; margin-top:3px; display:inline-block;">${q.exp}</span>`;
+        speechText.innerHTML = `<strong>Not quite, ${State.studentName}.</strong> The correct answer is <strong>${letters[correctIdx]}: ${q.opts[correctIdx]}</strong>.<br><span style="color:#CBD5E1; font-size:12.5px; margin-top:3px; display:inline-block;">${q.exp}</span>`;
       }
 
       document.getElementById('scorePill').textContent = `SCORE: ${State.score < 10 ? '0' + State.score : State.score}`;
@@ -1789,7 +1522,7 @@
       const letters = ['A', 'B', 'C', 'D', 'E'];
       const speechBox = document.getElementById('aiSpeechBox');
       const speechText = document.getElementById('aiSpeechText');
-      speechText.innerHTML = `<strong>Time's up, ${State.studentName}!</strong> The correct response was <strong>${letters[correctIdx]}: ${q.opts[correctIdx]}</strong>.<br><span style="color:#C6DBEF; font-size:12.5px; margin-top:3px; display:inline-block;">${q.exp}</span>`;
+      speechText.innerHTML = `<strong>Time's up, ${State.studentName}!</strong> The correct response is <strong>${letters[correctIdx]}: ${q.opts[correctIdx]}</strong>.<br><span style="color:#CBD5E1; font-size:12.5px; margin-top:3px; display:inline-block;">${q.exp}</span>`;
       speechBox.style.display = 'block';
 
       document.getElementById('nextQuestionBtn').style.display = 'flex';
@@ -1832,15 +1565,15 @@
       const aiBox = document.getElementById('aiSummaryEvaluation');
       let evalMsg = "";
       if (pct >= 85) {
-        evalMsg = `“Outstanding performance, <strong>${State.studentName}</strong>! You achieved <strong>${State.score} out of ${total}</strong> (${pct}%). You demonstrated mastery across ocean floor features, salinity levels, and continental drift. You are ready for your geography examination!”`;
+        evalMsg = `“Outstanding performance, <strong>${State.studentName}</strong>! You scored <strong>${State.score} out of ${total}</strong> (${pct}%). Your command over parts of speech, syntax rules, and prepositional usage is exemplary. You are well prepared for your examination!”`;
       } else if (pct >= 60) {
-        evalMsg = `“Good revision attempt, <strong>${State.studentName}</strong>! You scored <strong>${State.score} out of ${total}</strong> (${pct}%). Your conceptual foundation is strong, though a few ocean relief terms and salinity statistics need attention. Review your missed items below.”`;
+        evalMsg = `“Solid revision attempt, <strong>${State.studentName}</strong>! You achieved <strong>${State.score} out of ${total}</strong> (${pct}%). Your core grammatical concepts are sound, though a few tricky conjunctions or verb classifications require a quick recap. Review your missed items below.”`;
       } else {
-        evalMsg = `“Session concluded, <strong>${State.studentName}</strong>. You scored <strong>${State.score} out of ${total}</strong> (${pct}%). Revisit the textbook sections on ocean depths and antipodal balance, and use the 'Revise Mistakes' feature below to build your confidence.”`;
+        evalMsg = `“Revision session completed, <strong>${State.studentName}</strong>. You scored <strong>${State.score} out of ${total}</strong> (${pct}%). Pay close attention to the low-scoring categories in the snapshot below, and use the 'Revise Mistakes' feature to turn weak areas into strengths.”`;
       }
       aiBox.innerHTML = evalMsg;
 
-      // Category Performance Bars
+      // Category Mastery Bars
       const catContainer = document.getElementById('categoryBarsContainer');
       catContainer.innerHTML = '';
 
